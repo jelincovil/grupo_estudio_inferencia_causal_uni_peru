@@ -1,4 +1,4 @@
-# Repositario de datasets usados por el grupo de Inferencia Causal UNI
+# Repositorio de datasets usados por el grupo de Inferencia Causal UNI
 
 ## Introducción
 
