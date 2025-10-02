@@ -10,8 +10,11 @@ Este dataset contiene [Datos sobre una droga determinada].
 // Fuente: Obtenido del repositorio de GitHub "[Causal-Inference-and-Discovery-in-Python)"
 
 ## Descrición dataset B
+ 
 
-# Descripción del dataset 'lalonde'
+## Descripción del dataset 'lalonde'
+Este es un dfata set.....
+
 
 ## Referencias (norma APA)
 
