@@ -42,6 +42,34 @@ Importancia metodológica
 •	Al comparar el experimento con los datos observacionales (PSID, CPS), LaLonde mostró que muchos métodos econométricos tradicionales fallaban en replicar los resultados experimentales.
 •	Este dataset se convirtió en un benchmark estándar en econometría y en métodos de inferencia causal moderna (matching, propensity scores, weighting, doubly robust, machine learning causal).
 
+## Descrición dataset C
+
+### Descripción del dataset Fev.dat.txt
+Un conjunto de datos sobre la relación entre la función respiratoria (medida mediante el volumen espiratorio forzado, VEF1) y el tabaquismo proporciona una herramienta eficaz para investigar una amplia variedad de cuestiones estadísticas. Este artículo ofrece una breve descripción del problema, los datos y diversas cuestiones y análisis que plantea la cuantificación de la relación entre el VEF1 y el tabaquismo.
+
+### Datos y contenido del dataset
+
+El dataset recoge información sobre la función respiratoria medida en niños, más específicamente el volumen espirado forzadamente (“forced expiratory volume”, FEV).
+Las variables incluidas incluyen edad (age), altura (height), género (gender), y hábito de fumar (smoke), entre otras variables explicativas posibles.
+El número de observaciones es de aproximadamente n = 345 niños de entre 6 y 10 años para uno de los ejemplos de uso del dataset. PennState: Statistics Online Courses
+La variable dependiente principal (“respuesta”) es FEV, el volumen que el niño puede exhalar forzadamente, como indicador de la función pulmonar. rstudio-pubs-static.s3.amazonaws.com
+
+### Paper relacionado: Un problema exhalante para la enseñanza de la estadística
+Revista de Educación Estadística, Volumen 13, Número 2 (2005), https://jse.amstat.org/v13n2/datasets.kahn.html
+
+Uso en enseñanza / enfoque didáctico
+Kahn propone que el dataset puede servir como hilo conductor durante el curso de estadística, permitiendo al profesor introducir de forma progresiva temas como regresión lineal simple, regresión múltiple, interacciones, supuestos de los modelos (residuals, homocedasticidad, normalidad, etc.), diagnóstico de colinealidad, interpretación de coeficientes, posibles efectos no lineales, etc.
+Dado que los datos son reales y tienen “imperfecciones” propias de datos de la vida real, permiten discutir problemas reales en modelado y análisis de datos (por ejemplo, valores atípicos, variabilidad, ajustes, etc.).
+
+### El formato del Archivo fev.dat.txt describe lo siguiente:
+
+| Columnas | Variable | Tipo / Etiqueta | Descripción |
+|-----------|-----------|----------------|--------------|
+| 1–3       | edad      | Discreto (entero positivo, en años) | Edad del individuo en años completos |
+| 5–10      | fiebre    | Continua (litros) | Volumen espiratorio forzado (FEV): cantidad de aire exhalado en litros durante el primer segundo de una espiración forzada |
+| 12–15     | alto      | Continua (pulgadas) | Altura del individuo medida en pulgadas |
+| 19        | sexo      | Discreto (binario: 0 = mujer, 1 = hombre) | Sexo del individuo |
+| 25        | fumar     | Discreto (binario: 0 = no fumador, 1 = fumador) | Indica si el individuo fuma o no |
 
 
 ## Referencias (norma APA)
@@ -49,3 +77,5 @@ Importancia metodológica
 - Sharma, A., & Kiciman, E. (2020). DoWhy: An End-to-End Library for Causal Inference. arXiv preprint arXiv:2011.04216. 
 - Lalonde, R. (1986). Evaluating the econometric evaluations of training programs with experimental data. American Economic Review 76: 604-620.
 - Dehejia, R.H. and Wahba, S. (1999). Causal Effects in Nonexperimental Studies: Re-Evaluating the Evaluation of Training Programs. Journal of the American Statistical Association 94: 1053-1062
+- Kahn, M. J. (2005). An Exhalent Problem for Teaching Statistics. Journal of Statistics Education, 13(2). Recuperado de https://jse.amstat.org/v13n2/datasets.kahn.html
+- 
