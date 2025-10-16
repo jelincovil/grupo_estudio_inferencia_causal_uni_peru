@@ -2,7 +2,7 @@
 
 En esta carpeta listamos y referenciamos los modulos estudiados por el grupo de inferencia causal.
 
-# Librería Causalinference
+# Librería Causalinference  
 
 La librería **CausalInference de Python** es una herramienta de código abierto diseñada para aplicar los principales métodos de Inferencia Causal en entornos de investigación y ciencia de datos. Su enfoque está en el Marco del Resultado Potencial (Potential Outcomes Framework), permitiendo a los usuarios estimar el efecto promedio de un tratamiento (Average Treatment Effect o ATE) y el efecto promedio del tratamiento en los tratados (Average Treatment Effect on the Treated o ATT) a partir de datos observacionales
 
