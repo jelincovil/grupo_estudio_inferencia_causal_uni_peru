@@ -56,3 +56,7 @@ Esta lista recopila tesis de maestría y doctorado premiadas en los campos de Es
    - **Premio**: G-Research PhD Prize 2025 (premio de hasta £10,000 para tesis en machine learning y data science)
    - **Resumen**: Explora la intersección de deep learning y interfaces cerebro-computadora (BCI) basadas en imaginería motora. Avanza en procesamiento de señales diferenciales, aprendizaje geométrico y razonamiento causal para crear modelos generativos de biosignales que generalicen entre sujetos y condiciones.
    - **Cómo descargar**: Accede al repositorio Spiral de Imperial [https://spiral.imperial.ac.uk/handle/10044/1/98765](https://spiral.imperial.ac.uk/handle/10044/1/98765) (busca por título o autor para el archivo Barmpas-K-2024-PhD-Thesis.pdf). El PDF está disponible de forma gratuita.
+
+ Aqui dejo un ejemplo: [template de tesis](https://github.com/jelincovil/grupo_estudio_inferencia_causal_uni_peru).
+
+ 
