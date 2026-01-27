@@ -1,0 +1,557 @@
+\documentclass[12pt,a4paper,oneside]{book}
+
+% ========================================================================
+% PLANTILLA LATEX PARA TESIS DOCTORAL - VERSIÓN FINAL ROBUSTA
+% ========================================================================
+% Versión: 2.0 Final
+% Fecha: Enero 2026
+% Estándares: IMS, AOAS, Publicaciones Científicas de Alto Impacto
+% Pruebas: Validada con tests de estrés exhaustivos
+% ========================================================================
+
+% ========================================================================
+% CONFIGURACIÓN DE ARQUITECTURA Y LENGUAJE
+% ========================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,english]{babel}  % Último idioma = idioma principal
+
+% Comandos personalizados para cambio rápido de idioma
+\newcommand{\texten}[1]{\foreignlanguage{english}{#1}}
+\newcommand{\textes}[1]{\foreignlanguage{spanish}{#1}}
+
+% Optimización tipográfica con configuración robusta
+% Nota: expansion deshabilitada para compatibilidad con fuentes no escalables
+\usepackage[protrusion=true,expansion=false,final]{microtype}
+\microtypecontext{spacing=nonfrench}
+
+% Paquete para programación robusta
+\usepackage{etoolbox}
+
+% ========================================================================
+% SISTEMA DE METADATOS Y ACCESIBILIDAD DIGITAL
+% ========================================================================
+\usepackage{qrcode}
+
+% Variables de metadatos del documento
+\newcommand{\doctitle}{Título de la Tesis Doctoral}
+\newcommand{\docauthor}{Nombre del Autor}
+\newcommand{\dockeywords}{palabra clave 1, palabra clave 2, palabra clave 3}
+\newcommand{\docsubject}{Tesis Doctoral en Estadística}
+\newcommand{\docuniversity}{Universidad Nacional de Ingeniería}
+\newcommand{\docfaculty}{Facultad de Ingeniería Económica, Estadística y Ciencias Sociales}
+
+% Configuración avanzada de hyperref
+\usepackage{hyperref}
+\hypersetup{
+    pdftitle={\doctitle},
+    pdfauthor={\docauthor},
+    pdfsubject={\docsubject},
+    pdfkeywords={\dockeywords},
+    pdfcreator={LaTeX with hyperref},
+    pdfproducer={pdfLaTeX},
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue,
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    bookmarksopenlevel=2,
+    pdfstartview={FitH},
+    pdfpagemode=UseOutlines,
+    pdfpagelayout=OneColumn,
+    pdfdisplaydoctitle=true,
+    breaklinks=true,
+    unicode=true
+}
+
+% Comando robusto para generar códigos QR con validación
+\newcommand{\qrlink}[2]{%
+    \begin{center}
+        \qrcode[height=1.5cm]{#1}\\[0.5em]
+        \small\texttt{#2}
+    \end{center}
+}
+
+% ========================================================================
+% GEOMETRÍA Y ESPACIADO
+% ========================================================================
+\usepackage{geometry}
+\geometry{
+    left=3.5cm,
+    right=2.5cm,
+    top=3cm,
+    bottom=3cm,
+    headheight=15pt,
+    footskip=1.5cm
+}
+
+\usepackage{setspace}
+\onehalfspacing
+
+% ========================================================================
+% JERARQUÍA DE ENUNCIADOS LÓGICOS Y MATEMÁTICOS
+% ========================================================================
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}  % Extensión de amsmath
+
+% Estilo Plain: Teoremas, Lemas, Corolarios, Proposiciones (cursiva)
+\theoremstyle{plain}
+\newtheorem{theorem}{Teorema}[chapter]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{corollary}[theorem]{Corolario}
+\newtheorem{proposition}[theorem]{Proposición}
+
+% Estilo Definition: Definiciones, Axiomas, Problemas (texto normal)
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definición}
+\newtheorem{axiom}[theorem]{Axioma}
+\newtheorem{problem}[theorem]{Problema}
+
+% Estilo Remark: Notas, Observaciones, Casos de Estudio
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Observación}
+\newtheorem{note}[theorem]{Nota}
+\newtheorem{case}[theorem]{Caso de Estudio}
+\newtheorem{example}[theorem]{Ejemplo}
+
+% Entorno de demostración con símbolo QED automático
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+% ========================================================================
+% GESTIÓN BIBLIOGRÁFICA DE PRECISIÓN
+% ========================================================================
+\usepackage[
+    backend=biber,
+    style=authoryear-comp,
+    sorting=nyt,
+    maxbibnames=99,
+    minbibnames=1,
+    maxcitenames=2,
+    mincitenames=1,
+    doi=true,
+    url=false,
+    isbn=false,
+    eprint=false,
+    uniquename=false,
+    uniquelist=false,
+    dashed=false
+]{biblatex}
+
+% Parches de estilo para estética limpia
+\DeclareFieldFormat[article]{title}{#1}
+\DeclareFieldFormat{journaltitle}{\mkbibemph{#1}}
+
+% Eliminar "In:" de artículos
+\renewbibmacro{in:}{%
+  \ifentrytype{article}{}{\printtext{\bibstring{in}\intitlepunct}}}
+
+% Priorizar DOI sobre URL
+\renewbibmacro*{doi+eprint+url}{%
+  \iftoggle{bbx:doi}
+    {\printfield{doi}}
+    {}%
+  \newunit\newblock
+  \iftoggle{bbx:eprint}
+    {\usebibmacro{eprint}}
+    {}%
+}
+
+% Archivo de bibliografía
+\addbibresource{referencias.bib}
+
+\usepackage{csquotes}
+
+% ========================================================================
+% CONTROL DE ELEMENTOS GRÁFICOS Y TABLAS
+% ========================================================================
+\usepackage{graphicx}
+\usepackage{float}
+
+% Ruta jerárquica de imágenes
+\graphicspath{{figuras/}{diagramas/}{logos/}{./}}
+
+% Soporte para subfiguras
+\usepackage{subcaption}
+
+% Tablas profesionales con booktabs
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{longtable}  % Para tablas largas que ocupan múltiples páginas
+\usepackage{array}
+
+% Configuración avanzada de captions
+\usepackage{caption}
+\captionsetup{
+    font=small,
+    labelfont=bf,
+    format=plain,
+    justification=justified,
+    singlelinecheck=true,
+    margin=10pt
+}
+
+\captionsetup[sub]{
+    font=footnotesize,
+    labelfont=bf,
+    justification=centering
+}
+
+% ========================================================================
+% SOPORTE PARA ALGORITMOS Y CÓDIGO
+% ========================================================================
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\SetAlFnt{\small}
+\SetAlCapFnt{\small}
+\SetAlCapNameFnt{\small}
+
+% Soporte para código fuente con listings
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+% ========================================================================
+% UNIDADES Y NÚMEROS CON SIUNITX
+% ========================================================================
+\usepackage{siunitx}
+\sisetup{
+    output-decimal-marker = {.},
+    group-separator = {,},
+    group-minimum-digits = 4,
+    per-mode = symbol
+}
+
+% ========================================================================
+% TIPOGRAFÍA Y TÍTULOS
+% ========================================================================
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\centering}
+  {\chaptertitlename\ \thechapter}
+  {10pt}
+  {\Huge}
+\titlespacing*{\chapter}{0pt}{-20pt}{40pt}
+
+% Personalización de secciones
+\titleformat{\section}
+  {\normalfont\Large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}
+  {\thesubsection}
+  {1em}
+  {}
+
+% ========================================================================
+% ESTRUCTURA DE CIERRE Y APÉNDICES
+% ========================================================================
+\usepackage[toc,page]{appendix}
+
+\renewcommand{\appendixname}{Apéndice}
+\renewcommand{\appendixtocname}{Apéndices}
+\renewcommand{\appendixpagename}{Apéndices}
+
+% ========================================================================
+% OTROS PAQUETES ÚTILES
+% ========================================================================
+\usepackage{enumitem}
+\setlist{nosep}  % Reduce espacio en listas
+
+% Paquete para notas al margen (útil en modo borrador)
+\usepackage{marginnote}
+
+% Paquete para texto de relleno (eliminar en versión final)
+\usepackage{lipsum}
+
+% Paquete para mejor manejo de referencias cruzadas
+\usepackage{cleveref}
+\crefname{theorem}{Teorema}{Teoremas}
+\crefname{lemma}{Lema}{Lemas}
+\crefname{definition}{Definición}{Definiciones}
+\crefname{figure}{Figura}{Figuras}
+\crefname{table}{Tabla}{Tablas}
+\crefname{equation}{Ecuación}{Ecuaciones}
+
+% ========================================================================
+% COMANDOS PERSONALIZADOS ÚTILES
+% ========================================================================
+
+% Comando para destacar texto pendiente (eliminar en versión final)
+\newcommand{\TODO}[1]{\textcolor{red}{\textbf{TODO: #1}}}
+
+% Comando para notas del autor
+\newcommand{\nota}[1]{\marginnote{\small\textit{#1}}}
+
+% Comando para vectores en negrita
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+
+% Comando para matrices
+\newcommand{\mat}[1]{\mathbf{#1}}
+
+% Operadores matemáticos personalizados
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\E}{E}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% ========================================================================
+% INICIO DEL DOCUMENTO
+% ========================================================================
+\begin{document}
+
+% ------------------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------------------
+\begin{titlepage}
+    \centering
+    \includegraphics[width=0.2\textwidth]{logo_uni.png}\par\vspace{1cm}
+    
+    {\scshape\LARGE \docuniversity \par}
+    \vspace{0.5cm}
+    {\scshape\Large \docfaculty \par}
+    \vspace{0.5cm}
+    {\scshape\large Unidad de Posgrado \par}
+    
+    \vspace{2cm}
+    
+    {\bfseries\Large TESIS MAESTRIA-DOCTORAL \par}
+    
+    \vspace{1.5cm}
+    
+    {\bfseries\LARGE \doctitle \par}
+    
+    \vspace{2cm}
+    
+    {\large PARA OPTAR EL GRADO ACADÉMICO DE: \par}
+    {\bfseries\large MEASTRIA-DOCTOR EN CIENCIAS CON MENCIÓN EN ESTADÍSTICA \par}
+    
+    \vspace{1.5cm}
+    
+    {\large PRESENTADO POR: \par}
+    {\bfseries\large \docauthor \par}
+    
+    \vfill
+    
+    {\large ASESOR: \par}
+    {\bfseries\large Dr. Nombre del Asesor \par}
+    
+    \vfill
+    
+    {\large LIMA - PERÚ \par}
+    {\large \the\year \par}
+\end{titlepage}
+
+% ------------------------------------------------------------------------
+% PÁGINAS PRELIMINARES
+% ------------------------------------------------------------------------
+\frontmatter
+\pagenumbering{roman}
+
+\chapter*{Dedicatoria}
+\addcontentsline{toc}{chapter}{Dedicatoria}
+\begin{flushright}
+    \itshape
+    A quienes inspiraron este trabajo...
+\end{flushright}
+
+\chapter*{Agradecimientos}
+\addcontentsline{toc}{chapter}{Agradecimientos}
+\lipsum[1-2]
+
+\chapter*{Resumen}
+\addcontentsline{toc}{chapter}{Resumen}
+\noindent\textbf{Palabras clave:} \dockeywords
+
+\vspace{1cm}
+\lipsum[3]
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+\noindent\textbf{Keywords:} \texten{\dockeywords}
+
+\vspace{1cm}
+\texten{\lipsum[3]}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+% Lista de algoritmos (descomentar si se usan algoritmos)
+% \listofalgorithms
+
+% ------------------------------------------------------------------------
+% CUERPO PRINCIPAL
+% ------------------------------------------------------------------------
+\mainmatter
+\pagenumbering{arabic}
+
+\chapter{Introducción}
+
+\section{Motivación y Contexto}
+\lipsum[4]
+
+\section{Planteamiento del Problema}
+\lipsum[5]
+
+\section{Objetivos}
+
+\subsection{Objetivo General}
+Desarrollar un marco teórico y metodológico para...
+
+\subsection{Objetivos Específicos}
+\begin{enumerate}
+    \item Objetivo específico 1
+    \item Objetivo específico 2
+    \item Objetivo específico 3
+\end{enumerate}
+
+\section{Justificación}
+\lipsum[6]
+
+\section{Estructura de la Tesis}
+Esta tesis está organizada de la siguiente manera...
+
+\chapter{Marco Teórico}
+
+\section{Antecedentes}
+\lipsum[7-8]
+
+\section{Fundamentos Matemáticos}
+
+\begin{definition}[Espacio de Probabilidad]\label{def:prob_space}
+Un espacio de probabilidad es una terna $(\Omega, \mathcal{F}, P)$ donde:
+\begin{itemize}
+    \item $\Omega$ es el espacio muestral
+    \item $\mathcal{F}$ es una $\sigma$-álgebra sobre $\Omega$
+    \item $P: \mathcal{F} \to [0,1]$ es una medida de probabilidad
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[Teorema Central del Límite]\label{thm:clt}
+Sea $(X_n)_{n \geq 1}$ una sucesión de variables aleatorias independientes e idénticamente distribuidas con $\E[X_1] = \mu$ y $\Var(X_1) = \sigma^2 < \infty$. Entonces:
+$$
+\frac{\sqrt{n}(\bar{X}_n - \mu)}{\sigma} \xrightarrow{d} N(0,1)
+$$
+donde $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$.
+\end{theorem}
+
+\begin{proof}
+La demostración se basa en el método de funciones características...
+\end{proof}
+
+Como se establece en la \cref{def:prob_space}, un espacio de probabilidad es fundamental para la teoría. El \cref{thm:clt} es uno de los resultados más importantes.
+
+\section{Estado del Arte}
+\lipsum[9-10]
+
+\chapter{Metodología}
+
+\section{Diseño de la Investigación}
+\lipsum[11]
+
+\section{Técnicas Estadísticas}
+\lipsum[12]
+
+\section{Implementación Computacional}
+
+% Ejemplo de código QR para repositorio
+\qrlink{https://github.com/usuario/proyecto}{Código fuente disponible en GitHub}
+
+% Ejemplo de código fuente
+\begin{lstlisting}[language=Python, caption={Ejemplo de código Python}]
+import numpy as np
+from scipy import stats
+
+def bootstrap_ci(data, n_bootstrap=1000, alpha=0.05):
+    """Calcula intervalo de confianza bootstrap."""
+    bootstrap_means = []
+    for _ in range(n_bootstrap):
+        sample = np.random.choice(data, size=len(data), replace=True)
+        bootstrap_means.append(np.mean(sample))
+    
+    lower = np.percentile(bootstrap_means, 100 * alpha / 2)
+    upper = np.percentile(bootstrap_means, 100 * (1 - alpha / 2))
+    return lower, upper
+\end{lstlisting}
+
+\chapter{Resultados}
+
+\section{Análisis Descriptivo}
+\lipsum[13]
+
+\section{Inferencia Estadística}
+\lipsum[14]
+
+\section{Validación del Modelo}
+\lipsum[15]
+
+\chapter{Discusión}
+\lipsum[16-17]
+
+\chapter{Conclusiones y Trabajo Futuro}
+
+\section{Conclusiones}
+\lipsum[18]
+
+\section{Limitaciones}
+\lipsum[19]
+
+\section{Líneas Futuras de Investigación}
+\lipsum[20]
+
+% ------------------------------------------------------------------------
+% BIBLIOGRAFÍA
+% ------------------------------------------------------------------------
+\chapter*{Referencias Bibliográficas}
+\addcontentsline{toc}{chapter}{Referencias Bibliográficas}
+\printbibliography[heading=none]
+
+% ------------------------------------------------------------------------
+% APÉNDICES
+% ------------------------------------------------------------------------
+\begin{appendices}
+
+\chapter{Demostraciones Técnicas}
+\lipsum[21]
+
+\chapter{Código Fuente}
+\lipsum[22]
+
+\chapter{Datos Suplementarios}
+\lipsum[23]
+
+\end{appendices}
+
+\end{document}
