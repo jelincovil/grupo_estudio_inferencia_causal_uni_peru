@@ -1,0 +1,606 @@
+\documentclass[12pt,a4paper,oneside]{book}
+
+% ========================================================================
+% PLANTILLA LATEX PARA TESIS - ADAPTADA A GUÍA METODOLÓGICA (MIN CAMBIOS)
+% ========================================================================
+% Fecha: Enero 2026
+% Objetivo: mantener tu estructura, pero agregar lo faltante según guía:
+% - "Copia de Documentos" en preliminares
+% - "Hipótesis y Variables" en Introducción
+% - "Definición de Términos" en Marco Teórico
+% - refuerzo mínimo en Metodología
+% - "Conclusiones y Recomendaciones"
+% - Apéndices: Matriz de Consistencia + Matriz de Operacionalización
+% - Bibliografía en estilo APA (biblatex)
+% ========================================================================
+
+% ========================================================================
+% CONFIGURACIÓN DE ARQUITECTURA Y LENGUAJE
+% ========================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,english]{babel}  % último idioma = idioma principal (english)
+% Si deseas que el principal sea español, cambia a: \usepackage[english,spanish]{babel}
+
+% Comandos personalizados para cambio rápido de idioma
+\newcommand{\texten}[1]{\foreignlanguage{english}{#1}}
+\newcommand{\textes}[1]{\foreignlanguage{spanish}{#1}}
+
+% Optimización tipográfica
+\usepackage[protrusion=true,expansion=false,final]{microtype}
+\microtypecontext{spacing=nonfrench}
+
+% Paquete para programación robusta
+\usepackage{etoolbox}
+
+% ========================================================================
+% SISTEMA DE METADATOS Y ACCESIBILIDAD DIGITAL
+% ========================================================================
+\usepackage{qrcode}
+
+% Variables de metadatos del documento
+\newcommand{\doctitle}{Título de la Tesis Doctoral}
+\newcommand{\docauthor}{Nombre del Autor}
+\newcommand{\dockeywords}{palabra clave 1, palabra clave 2, palabra clave 3}
+\newcommand{\docsubject}{Tesis Doctoral en Estadística}
+\newcommand{\docuniversity}{Universidad Nacional de Ingeniería}
+\newcommand{\docfaculty}{Facultad de Ingeniería Económica, Estadística y Ciencias Sociales}
+
+% Configuración avanzada de hyperref
+\usepackage{hyperref}
+\hypersetup{
+    pdftitle={\doctitle},
+    pdfauthor={\docauthor},
+    pdfsubject={\docsubject},
+    pdfkeywords={\dockeywords},
+    pdfcreator={LaTeX with hyperref},
+    pdfproducer={pdfLaTeX},
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue,
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    bookmarksopenlevel=2,
+    pdfstartview={FitH},
+    pdfpagemode=UseOutlines,
+    pdfpagelayout=OneColumn,
+    pdfdisplaydoctitle=true,
+    breaklinks=true,
+    unicode=true
+}
+
+% Comando robusto para generar códigos QR
+\newcommand{\qrlink}[2]{%
+    \begin{center}
+        \qrcode[height=1.5cm]{#1}\\[0.5em]
+        \small\texttt{#2}
+    \end{center}
+}
+
+% ========================================================================
+% GEOMETRÍA Y ESPACIADO
+% ========================================================================
+\usepackage{geometry}
+\geometry{
+    left=3.5cm,
+    right=2.5cm,
+    top=3cm,
+    bottom=3cm,
+    headheight=15pt,
+    footskip=1.5cm
+}
+
+\usepackage{setspace}
+\onehalfspacing
+
+% ========================================================================
+% JERARQUÍA DE ENUNCIADOS LÓGICOS Y MATEMÁTICOS
+% ========================================================================
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Teorema}[chapter]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{corollary}[theorem]{Corolario}
+\newtheorem{proposition}[theorem]{Proposición}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definición}
+\newtheorem{axiom}[theorem]{Axioma}
+\newtheorem{problem}[theorem]{Problema}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Observación}
+\newtheorem{note}[theorem]{Nota}
+\newtheorem{case}[theorem]{Caso de Estudio}
+\newtheorem{example}[theorem]{Ejemplo}
+
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+% ========================================================================
+% GESTIÓN BIBLIOGRÁFICA (APA) - MIN CAMBIO
+% ========================================================================
+\usepackage[
+    backend=biber,
+    style=apa,
+    sorting=nyt,
+    maxbibnames=99,
+    minbibnames=1,
+    maxcitenames=2,
+    mincitenames=1,
+    doi=true,
+    url=false,
+    isbn=false,
+    eprint=false
+]{biblatex}
+
+% Mapeo de idioma APA para español (útil si tus refs están en español)
+\DeclareLanguageMapping{spanish}{spanish-apa}
+
+\addbibresource{referencias.bib}
+
+\usepackage{csquotes}
+
+% ========================================================================
+% CONTROL DE ELEMENTOS GRÁFICOS Y TABLAS
+% ========================================================================
+\usepackage{graphicx}
+\usepackage{float}
+\graphicspath{{figuras/}{diagramas/}{logos/}{./}{documentos/}}
+
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{array}
+
+\usepackage{caption}
+\captionsetup{
+    font=small,
+    labelfont=bf,
+    format=plain,
+    justification=justified,
+    singlelinecheck=true,
+    margin=10pt
+}
+\captionsetup[sub]{
+    font=footnotesize,
+    labelfont=bf,
+    justification=centering
+}
+
+% ========================================================================
+% SOPORTE PARA ALGORITMOS Y CÓDIGO
+% ========================================================================
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\SetAlFnt{\small}
+\SetAlCapFnt{\small}
+\SetAlCapNameFnt{\small}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+% ========================================================================
+% UNIDADES Y NÚMEROS CON SIUNITX
+% ========================================================================
+\usepackage{siunitx}
+\sisetup{
+    output-decimal-marker = {.},
+    group-separator = {,},
+    group-minimum-digits = 4,
+    per-mode = symbol
+}
+
+% ========================================================================
+% TIPOGRAFÍA Y TÍTULOS
+% ========================================================================
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\centering}
+  {\chaptertitlename\ \thechapter}
+  {10pt}
+  {\Huge}
+\titlespacing*{\chapter}{0pt}{-20pt}{40pt}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}
+  {\thesubsection}
+  {1em}
+  {}
+
+% ========================================================================
+% ESTRUCTURA DE CIERRE Y APÉNDICES
+% ========================================================================
+\usepackage[toc,page]{appendix}
+\renewcommand{\appendixname}{Apéndice}
+\renewcommand{\appendixtocname}{Apéndices}
+\renewcommand{\appendixpagename}{Apéndices}
+
+% ========================================================================
+% OTROS PAQUETES ÚTILES
+% ========================================================================
+\usepackage{enumitem}
+\setlist{nosep}
+
+\usepackage{marginnote}
+\usepackage{lipsum}
+
+\usepackage{cleveref}
+\crefname{theorem}{Teorema}{Teoremas}
+\crefname{lemma}{Lema}{Lemas}
+\crefname{definition}{Definición}{Definiciones}
+\crefname{figure}{Figura}{Figuras}
+\crefname{table}{Tabla}{Tablas}
+\crefname{equation}{Ecuación}{Ecuaciones}
+
+% ========================================================================
+% COMANDOS PERSONALIZADOS ÚTILES
+% ========================================================================
+\newcommand{\TODO}[1]{\textcolor{red}{\textbf{TODO: #1}}}
+\newcommand{\nota}[1]{\marginnote{\small\textit{#1}}}
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\E}{E}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% ========================================================================
+% INICIO DEL DOCUMENTO
+% ========================================================================
+\begin{document}
+
+% ------------------------------------------------------------------------
+% PORTADA
+% ------------------------------------------------------------------------
+\begin{titlepage}
+    \centering
+    \includegraphics[width=0.2\textwidth]{logo_uni.png}\par\vspace{1cm}
+
+    {\scshape\LARGE \docuniversity \par}
+    \vspace{0.5cm}
+    {\scshape\Large \docfaculty \par}
+    \vspace{0.5cm}
+    {\scshape\large Unidad de Posgrado \par}
+
+    \vspace{2cm}
+
+    {\bfseries\Large TESIS DOCTORAL \par}
+
+    \vspace{1.5cm}
+
+    {\bfseries\LARGE \doctitle \par}
+
+    \vspace{2cm}
+
+    {\large PARA OPTAR EL GRADO ACADÉMICO DE: \par}
+    {\bfseries\large DOCTOR EN CIENCIAS CON MENCIÓN EN ESTADÍSTICA \par}
+
+    \vspace{1.5cm}
+
+    {\large PRESENTADO POR: \par}
+    {\bfseries\large \docauthor \par}
+
+    \vfill
+
+    {\large ASESOR: \par}
+    {\bfseries\large Dr. Nombre del Asesor \par}
+
+    \vfill
+
+    {\large LIMA - PERÚ \par}
+    {\large \the\year \par}
+\end{titlepage}
+
+% ------------------------------------------------------------------------
+% PÁGINAS PRELIMINARES
+% ------------------------------------------------------------------------
+\frontmatter
+\pagenumbering{roman}
+
+\chapter*{Dedicatoria}
+\addcontentsline{toc}{chapter}{Dedicatoria}
+\begin{flushright}
+    \itshape
+    A quienes inspiraron este trabajo...
+\end{flushright}
+
+\chapter*{Agradecimientos}
+\addcontentsline{toc}{chapter}{Agradecimientos}
+\lipsum[1-2]
+
+\chapter*{Resumen}
+\addcontentsline{toc}{chapter}{Resumen}
+\noindent\textbf{Palabras clave:} \dockeywords
+
+\vspace{1cm}
+\lipsum[3]
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+\noindent\textbf{Keywords:} \texten{\dockeywords}
+
+\vspace{1cm}
+\texten{\lipsum[3]}
+
+% ------------------------------------------------------------------------
+% NUEVO (GUÍA): COPIA DE DOCUMENTOS
+% ------------------------------------------------------------------------
+\chapter*{Copia de Documentos}
+\addcontentsline{toc}{chapter}{Copia de Documentos}
+
+\noindent En esta sección se incorporan los documentos exigidos por la Unidad de Posgrado (cartas, actas,
+formatos, constancias u otros). Sustituya este texto por los documentos correspondientes.
+
+% Ejemplo (si insertas un PDF como imagen, requiere que el PDF esté en /documentos):
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[page=1,width=0.95\textwidth]{documentos/acta_aprobacion.pdf}
+% \end{figure}
+
+\tableofcontents
+\listoffigures
+\listoftables
+% \listofalgorithms
+
+% ------------------------------------------------------------------------
+% CUERPO PRINCIPAL
+% ------------------------------------------------------------------------
+\mainmatter
+\pagenumbering{arabic}
+
+\chapter{Introducción}
+
+\section{Motivación y Contexto}
+\lipsum[4]
+
+\section{Planteamiento del Problema}
+\lipsum[5]
+
+\section{Objetivos}
+
+\subsection{Objetivo General}
+Desarrollar un marco teórico y metodológico para...
+
+\subsection{Objetivos Específicos}
+\begin{enumerate}
+    \item Objetivo específico 1
+    \item Objetivo específico 2
+    \item Objetivo específico 3
+\end{enumerate}
+
+% ------------------------------------------------------------------------
+% NUEVO (GUÍA): HIPÓTESIS Y VARIABLES
+% ------------------------------------------------------------------------
+\section{Hipótesis y Variables}
+
+\subsection{Hipótesis}
+\begin{itemize}
+  \item \textbf{Hipótesis general:} ...
+  \item \textbf{Hipótesis específicas:} ...
+\end{itemize}
+
+\subsection{Variables y Definiciones Operacionales}
+\begin{itemize}
+  \item \textbf{Variable dependiente / respuesta:} ...
+  \item \textbf{Variables independientes / explicativas:} ...
+  \item \textbf{Variables de control (si aplica):} ...
+\end{itemize}
+
+\section{Justificación}
+\lipsum[6]
+
+\section{Estructura de la Tesis}
+Esta tesis está organizada de la siguiente manera...
+
+\chapter{Marco Teórico}
+
+\section{Antecedentes}
+\lipsum[7-8]
+
+\section{Fundamentos Matemáticos}
+
+\begin{definition}[Espacio de Probabilidad]\label{def:prob_space}
+Un espacio de probabilidad es una terna $(\Omega, \mathcal{F}, P)$ donde:
+\begin{itemize}
+    \item $\Omega$ es el espacio muestral
+    \item $\mathcal{F}$ es una $\sigma$-álgebra sobre $\Omega$
+    \item $P: \mathcal{F} \to [0,1]$ es una medida de probabilidad
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[Teorema Central del Límite]\label{thm:clt}
+Sea $(X_n)_{n \geq 1}$ una sucesión de variables aleatorias independientes e idénticamente distribuidas con $\E[X_1] = \mu$ y $\Var(X_1) = \sigma^2 < \infty$. Entonces:
+$$
+\frac{\sqrt{n}(\bar{X}_n - \mu)}{\sigma} \xrightarrow{d} N(0,1)
+$$
+donde $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$.
+\end{theorem}
+
+\begin{proof}
+La demostración se basa en el método de funciones características...
+\end{proof}
+
+Como se establece en la \cref{def:prob_space}, un espacio de probabilidad es fundamental para la teoría.
+El \cref{thm:clt} es uno de los resultados más importantes.
+
+% ------------------------------------------------------------------------
+% NUEVO (GUÍA): DEFINICIÓN DE TÉRMINOS
+% ------------------------------------------------------------------------
+\section{Definición de Términos}
+\begin{description}[leftmargin=!,labelwidth=5cm]
+  \item[Modelo estadístico:] ...
+  \item[Estimación:] ...
+  \item[Inferencia estadística:] ...
+  \item[Validación:] ...
+  \item[Error / incertidumbre:] ...
+\end{description}
+
+\section{Estado del Arte}
+\lipsum[9-10]
+
+\chapter{Metodología}
+
+\section{Diseño de la Investigación}
+\lipsum[11]
+
+% ------------------------------------------------------------------------
+% REFUERZO MÍNIMO (GUÍA): POBLACIÓN/MUESTRA + PROCEDIMIENTO
+% ------------------------------------------------------------------------
+\section{Población, Muestra y Fuente de Datos}
+\lipsum[12]
+
+\section{Procedimiento y Plan de Análisis}
+\lipsum[13]
+
+\section{Técnicas Estadísticas}
+\lipsum[14]
+
+\section{Implementación Computacional}
+
+\qrlink{https://github.com/usuario/proyecto}{Código fuente disponible en GitHub}
+
+\begin{lstlisting}[language=Python, caption={Ejemplo de código Python}]
+import numpy as np
+from scipy import stats
+
+def bootstrap_ci(data, n_bootstrap=1000, alpha=0.05):
+    """Calcula intervalo de confianza bootstrap."""
+    bootstrap_means = []
+    for _ in range(n_bootstrap):
+        sample = np.random.choice(data, size=len(data), replace=True)
+        bootstrap_means.append(np.mean(sample))
+
+    lower = np.percentile(bootstrap_means, 100 * alpha / 2)
+    upper = np.percentile(bootstrap_means, 100 * (1 - alpha / 2))
+    return lower, upper
+\end{lstlisting}
+
+\chapter{Resultados}
+
+\section{Análisis Descriptivo}
+\lipsum[15]
+
+\section{Inferencia Estadística}
+\lipsum[16]
+
+\section{Validación del Modelo}
+\lipsum[17]
+
+\chapter{Discusión}
+\lipsum[18-19]
+
+% ------------------------------------------------------------------------
+% AJUSTE (GUÍA): CONCLUSIONES Y RECOMENDACIONES
+% ------------------------------------------------------------------------
+\chapter{Conclusiones y Recomendaciones}
+
+\section{Conclusiones}
+\lipsum[20]
+
+\section{Recomendaciones}
+\lipsum[21]
+
+\section{Limitaciones}
+\lipsum[22]
+
+\section{Líneas Futuras de Investigación}
+\lipsum[23]
+
+% ------------------------------------------------------------------------
+% BIBLIOGRAFÍA
+% ------------------------------------------------------------------------
+\chapter*{Referencias Bibliográficas}
+\addcontentsline{toc}{chapter}{Referencias Bibliográficas}
+\printbibliography[heading=none]
+
+% ------------------------------------------------------------------------
+% APÉNDICES
+% ------------------------------------------------------------------------
+\begin{appendices}
+
+% ------------------------------------------------------------------------
+% NUEVO (GUÍA): MATRICES
+% ------------------------------------------------------------------------
+\chapter{Matriz de Consistencia}
+\noindent Sustituya los puntos suspensivos con el contenido real de su investigación.
+
+\begin{longtable}{p{3.4cm} p{11cm}}
+\toprule
+\textbf{Elemento} & \textbf{Descripción} \\
+\midrule
+Problema & ... \\
+Objetivo general & ... \\
+Objetivos específicos & ... \\
+Hipótesis & ... \\
+Variables / constructos & ... \\
+Metodología (diseño, técnica, procedimiento) & ... \\
+\bottomrule
+\end{longtable}
+
+\chapter{Matriz de Operacionalización de Variables}
+\noindent Sustituya los puntos suspensivos con el detalle real (variables, dimensiones, indicadores e instrumentos).
+
+\begin{longtable}{p{3.2cm} p{3.2cm} p{3.2cm} p{4.6cm}}
+\toprule
+\textbf{Variable} & \textbf{Dimensión} & \textbf{Indicador} & \textbf{Instrumento / Cálculo} \\
+\midrule
+... & ... & ... & ... \\
+... & ... & ... & ... \\
+\bottomrule
+\end{longtable}
+
+% ------------------------------------------------------------------------
+% TUS APÉNDICES ORIGINALES (SE MANTIENEN)
+% ------------------------------------------------------------------------
+\chapter{Demostraciones Técnicas}
+\lipsum[24]
+
+\chapter{Código Fuente}
+\lipsum[25]
+
+\chapter{Datos Suplementarios}
+\lipsum[26]
+
+\end{appendices}
+
+\end{document}
