@@ -27,6 +27,10 @@ La tipografía (**New Computer Modern**) viene incluida con Typst: no hay que
 instalar fuentes. Compilar en [typst.app](https://typst.app) funciona igual
 (suba la carpeta completa).
 
+## Vista previa
+
+[Descargar o ver `tesis.pdf`](tesis.pdf) (demo compilada en el repositorio; regenere con `./compilar.sh` si edita fuentes).
+
 ## Compilación
 
 ```bash

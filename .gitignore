@@ -15,10 +15,8 @@
 *.lof
 *.lot
 *.pdf
+!plantilla_tesis_uni_typst/tesis.pdf
 *.zip
-
-# Typst (PDF generado localmente)
-plantilla_tesis_uni_typst/tesis.pdf
 
 # Python
 __pycache__/
