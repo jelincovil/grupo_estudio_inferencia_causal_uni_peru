@@ -25,6 +25,9 @@ NS = [250, 1000, 5000]
 ROW_RE = re.compile(
     r"\[([^,\]]+)\],\s*\[\$?([\+\-]?\d+\.\d+)\$\],\s*\[(\d+\.\d+)\],\s*\[(\d+\.\d+)\],\s*\[(\d+(?:\.\d+)?)\s*%\]"
 )
+SENS_RE = re.compile(
+    r"\[([^\]]+)\],\s*\[\$([\+\-]?\d+\.\d+)\$\],\s*\[(\d+\.\d+)\]"
+)
 
 
 def load_json():
@@ -92,13 +95,45 @@ def main() -> int:
                         f"n={n} {method} {key}: tesis.typ={got[key]} results.json={exp[key]}"
                     )
 
+    sens = data.get("sensibilidad")
+    if sens and "<tab:sensibilidad>" in text:
+        end_s = text.find("<tab:sensibilidad>")
+        start_s = text.rfind("#figure(", 0, end_s)
+        chunk_s = text[start_s:end_s] if start_s != -1 else text[:end_s]
+        sens_rows = SENS_RE.findall(chunk_s)
+        expected = [
+            (
+                round(sens["trim_ipw"]["IPW recorte 0.02–0.98"]["sesgo"], 3),
+                round(sens["trim_ipw"]["IPW recorte 0.02–0.98"]["rmse"], 3),
+            ),
+            (
+                round(sens["trim_ipw"]["IPW recorte 0.05–0.95"]["sesgo"], 3),
+                round(sens["trim_ipw"]["IPW recorte 0.05–0.95"]["rmse"], 3),
+            ),
+            (
+                round(sens["ols_con_x3_cuad"]["sesgo"], 3),
+                round(sens["ols_con_x3_cuad"]["rmse"], 3),
+            ),
+        ]
+        if len(sens_rows) >= 3:
+            for i, (es, rm) in enumerate(expected):
+                got_s = float(sens_rows[i][1])
+                got_rm = float(sens_rows[i][2])
+                if got_s != es or got_rm != rm:
+                    errors.append(
+                        f"sensibilidad fila {i+1}: tesis.typ sesgo={got_s} rmse={got_rm} "
+                        f"json sesgo={es} rmse={rm}"
+                    )
+        else:
+            errors.append("tabla sensibilidad: filas insuficientes en tesis.typ")
+
     if errors:
         print("DRIFT detectado entre tesis.typ y results.json:")
         for e in errors:
             print(" ", e)
         return 1
 
-    print("OK: Tabla 4.2 (tab:simulacion) coherente con results.json")
+    print("OK: Tabla 4.2 (tab:simulacion) y sensibilidad coherentes con results.json")
     return 0
 
 

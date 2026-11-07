@@ -479,5 +479,19 @@
   #text(size: 11pt, fill: gris)[#cuerpo]
 ]
 
+// Rótulo de nivel de evidencia (documentacion/README.md).
+#let evidencia(tipo: "simulación", body) = block(
+  width: 100%,
+  breakable: true,
+  stroke: (left: 2pt + regla),
+  inset: (left: 10pt, y: 6pt),
+  above: 0.8em,
+  below: 0.8em,
+)[
+  #text(size: 10pt, fill: gris)[
+    #strong[Nivel de evidencia:] #tipo. #body
+  ]
+]
+
 // Tarea pendiente (elimínese en la versión final).
 #let TODO(txt) = text(fill: rgb("#a33d3d"))[#strong[TODO: #txt]]

@@ -1,0 +1,38 @@
+name: verificar-plantillas
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  typst-y-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar Typst
+        run: |
+          curl -fsSL https://github.com/typst/typst/releases/download/v0.13.1/typst-x86_64-unknown-linux-musl.tar.xz | tar -xJ
+          sudo mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Dependencias Python (demo)
+        run: pip install -r plantilla_tesis_uni_typst/requirements.txt
+      - name: Coherencia cifras + compilación Typst
+        run: |
+          cd plantilla_tesis_uni_typst
+          python3 verificar_cifras.py
+          typst compile tesis.typ
+
+  latex:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: TeX Live + latexmk
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra biber
+      - name: Compilar plantilla LaTeX
+        working-directory: template_tesis_stat_uni
+        run: latexmk -pdf -interaction=nonstopmode tesis.tex

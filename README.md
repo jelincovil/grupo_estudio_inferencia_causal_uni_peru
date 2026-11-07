@@ -26,6 +26,7 @@
 
 | Recurso | Qué encontrará |
 | :--- | :--- |
+| [`documentacion/`](documentacion/) | Guías 00–06: modelo de tesis, editorial, visual, fórmulas, referencias, LaTeX↔Typst, enlaces UNI |
 | [`plantilla_tesis_uni_typst/`](plantilla_tesis_uni_typst/) | Plantilla **Typst** + demo completa (Chernozhukov et al. 2018, tablas, figuras, `verificar_cifras.py`) |
 | [`template_tesis_stat_uni/`](template_tesis_stat_uni/) | Plantilla **LaTeX** modular (biblatex-APA, entornos matemáticos, `latexmk`) |
 | [`Ejemplo_tesis_meastria/`](Ejemplo_tesis_meastria/) | Referencias de tesis premiadas (maestría) |
@@ -66,9 +67,9 @@ flowchart TB
 <summary><strong>Typst</strong> — compilar la demo</summary>
 
 ```bash
+./reproduce.sh                # verificar cifras + compilar Typst (y LaTeX si hay latexmk)
 cd plantilla_tesis_uni_typst
 ./compilar.sh
-python3 verificar_cifras.py   # coherencia Tabla 4.2 ↔ results.json
 ```
 
 Requisitos: [Typst](https://github.com/typst/typst/releases) ≥ 0.15 · Python 3.10+ con `pip install -r requirements.txt` para regenerar figuras.

@@ -20,8 +20,6 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyArrowPatch, Circle
-import segno
-
 import os
 BASE = os.path.dirname(os.path.abspath(__file__))
 FIGS = os.path.join(BASE, "figuras")
@@ -90,13 +88,14 @@ def logit_mle(Xd, y, iters=30, tol=1e-9):
             break
     return beta
 
-def est_ipw(X, A, Y):
+def est_ipw(X, A, Y, clip=(0.02, 0.98)):
     """IPW (Hájek) con propensidad logística bien especificada
     (base: 1, X1, X2, X3, X3²)."""
     Xd = np.column_stack([np.ones_like(A), X[:, 0], X[:, 1], X[:, 2],
                           X[:, 2] ** 2])
     beta = logit_mle(Xd, A)
-    e = np.clip(expit(Xd @ beta), 0.02, 0.98)
+    lo, hi = clip
+    e = np.clip(expit(Xd @ beta), lo, hi)
     w1 = A / e
     w0 = (1 - A) / (1 - e)
     mu1 = (w1 * Y).sum() / w1.sum()
@@ -164,6 +163,7 @@ def replica(i, n):
 # Piezas de generación
 # =====================================================================
 def gen_qr():
+    import segno
     qr = segno.make("https://github.com/jelincovil/grupo_estudio_inferencia_causal_uni_peru",
                     error="m")
     qr.save(f"{FIGS}/qr_repositorio.svg", scale=10, border=2, dark=NAVY,
@@ -278,6 +278,44 @@ def gen_fig_cobertura(res):
     plt.close(fig)
     print("\nFigura cobertura generada", flush=True)
 
+def correr_sensibilidad(n=1000, B=80):
+    """Sensibilidad: recorte de propensidad (IPW) y especificación omitida (OLS+)."""
+    trim_cases = {
+        "IPW recorte 0.02–0.98": ("IPW (logístico)", (0.02, 0.98)),
+        "IPW recorte 0.05–0.95": ("IPW (logístico)", (0.05, 0.95)),
+    }
+    out = {"n": n, "B": B, "trim_ipw": {}, "ols_con_x3_cuad": None}
+  # OLS con X3^2 (especificación correcta en el generador)
+    taus_ols_ok = []
+    for i in range(B):
+        rng = np.random.default_rng(2026 + 17 * i)
+        X, A, Y, tau = generar_datos(n, rng)
+        Z = np.column_stack([np.ones_like(A), A, X, X[:, 2] ** 2])
+        beta = np.linalg.lstsq(Z, Y, rcond=None)[0]
+        taus_ols_ok.append(float(beta[1]))
+    t = np.array(taus_ols_ok)
+    out["ols_con_x3_cuad"] = {
+        "sesgo": float(t.mean() - 2.0),
+        "rmse": float(np.sqrt(((t - 2.0) ** 2).mean())),
+    }
+    for label, (_, clip) in trim_cases.items():
+        taus = []
+        for i in range(B):
+            rng = np.random.default_rng(2026 + 17 * i)
+            X, A, Y, tau = generar_datos(n, rng)
+            th, _ = est_ipw(X, A, Y, clip=clip)
+            taus.append(th)
+        arr = np.array(taus)
+        out["trim_ipw"][label] = {
+            "sesgo": float(arr.mean() - 2.0),
+            "rmse": float(np.sqrt(((arr - 2.0) ** 2).mean())),
+        }
+        print(f"sensibilidad | {label} | sesgo={out['trim_ipw'][label]['sesgo']:+.3f} "
+              f"RMSE={out['trim_ipw'][label]['rmse']:.3f}", flush=True)
+    print(f"sensibilidad | OLS con $X_3^2$ | sesgo={out['ols_con_x3_cuad']['sesgo']:+.3f}",
+          flush=True)
+    return out
+
 def gen_fig_bootstrap():
     B_boot = 2000
     rng_b = np.random.default_rng(99)
@@ -341,6 +379,13 @@ if __name__ == "__main__":
             elif str(n) not in datos["resultados"]["DML (gradiente)"]:
                 print(f"(pendiente: escenario n={n})", flush=True)
 
+    if arg == "sensibilidad":
+        datos["sensibilidad"] = correr_sensibilidad()
+        with open(RUTA_JSON, "w", encoding="utf-8") as f:
+            json.dump(datos, f, ensure_ascii=False, indent=1)
+        print("results.json (sensibilidad) actualizado", flush=True)
+        sys.exit(0)
+
     if arg is None or arg == "final":
         completo = all(
             str(n) in datos["resultados"][m]
@@ -355,6 +400,7 @@ if __name__ == "__main__":
             datos["descriptivos"] = desc
             gen_fig_cobertura(datos["resultados"])
             datos["bootstrap"] = gen_fig_bootstrap()
+            datos["sensibilidad"] = correr_sensibilidad()
             with open(RUTA_JSON, "w", encoding="utf-8") as f:
                 json.dump(datos, f, ensure_ascii=False, indent=1)
             print("\nresults.json final guardado", flush=True)

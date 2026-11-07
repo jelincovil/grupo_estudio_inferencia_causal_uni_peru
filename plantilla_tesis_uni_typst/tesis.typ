@@ -14,8 +14,8 @@
   titulo: "Estimación de efectos causales en datos observacionales mediante doble aprendizaje automático",
   autor: "Nombre del Autor",
   asesor: "Dr. Nombre del Asesor",
-  grado: "Doctor en Ciencias con Mención en Estadística",
-  tipo-doc: "Tesis doctoral",
+  grado: "Doctorado en Ciencias e Ingeniería Estadística (verifique denominación oficial en su programa)",
+  tipo-doc: "Tesis doctoral (demo metodológica — sustituya por maestría o doctorado según corresponda)",
   universidad: "Universidad Nacional de Ingeniería",
   facultad: "Facultad de Ingeniería Económica, Estadística y Ciencias Sociales",
   unidad: "Unidad de Posgrado",
@@ -142,7 +142,10 @@
 #prefacio([Copia de Documentos])[
   En esta sección se incorporan los documentos exigidos por la Unidad de
   Posgrado: cartas, actas, formatos y constancias. Sustituya el presente
-  texto por los documentos correspondientes.
+  texto por los documentos correspondientes. El formato de portada, márgenes y
+  entrega se rige por el *Formato de Presentación de Tesis de la UNI* y las
+  directivas vigentes de la FIEECS (véase la biblioteca de enlaces del
+  repositorio, carpeta `documentacion/06-biblioteca-enlaces.md`).
 
   #aviso([Instrucciones])[
     Para insertar un documento digitalizado, colóquelo en la carpeta
@@ -452,6 +455,32 @@ herede la normalidad asintótica del @thm:clt.
   del procedimiento inferencial.]),
 )
 
+== Tabla de notación causal
+
+La @tab:notacion fija los símbolos principales del documento (guía 03 del
+repositorio).
+
+#figure(
+  table(
+    columns: (1.1fr, 3.4fr),
+    align: (left, left),
+    table.hline(stroke: 1pt),
+    table.header([*Símbolo*], [*Significado*]),
+    table.hline(stroke: 0.5pt),
+    [$Y(0), Y(1)$], [Resultados potenciales bajo $A=0$ y $A=1$],
+    [$Y$], [Respuesta observada $Y = Y(A)$],
+    [$A$], [Tratamiento binario],
+    [$X$], [Covariables pre-tratamiento ($d=5$ en la simulación)],
+    [$e(x)$], [Propensión $P(A=1 mid X=x)$],
+    [$m(x)$], [Resultado esperado sin tratamiento],
+    [$tau$], [ATE $E[Y(1)-Y(0)]$ — estimando de interés],
+    [$hat(tau)$], [Estimador (DM, IPW, OLS, DML)],
+    [$psi_i$], [Contribución a la función de influencia (DML)],
+    table.hline(stroke: 1pt),
+  ),
+  caption: [Notación causal y de estimación.],
+) <tab:notacion>
+
 == Estado del arte
 
 El marco de doble aprendizaje automático (*double/debiased machine learning*)
@@ -590,7 +619,9 @@ su error estándar deriva de la función de influencia empírica.
 == Implementación computacional
 
 La implementación usa Python 3.12 con las versiones fijadas en
-`requirements.txt` (NumPy, SciPy, scikit-learn, Matplotlib, Segno). El código
+`requirements.txt` (@pedregosa2011sklearn y dependencias). El marco
+institucional de entrega y posgrado se rige por la normativa UNI
+@uni2023reglamentoposgrado. El código
 completo —incluido el generador, los cuatro estimadores y el protocolo de
 réplicas— está disponible en el repositorio del grupo de estudio; el
 apéndice D reproduce las piezas esenciales. El @cod:dml muestra la función
@@ -763,18 +794,35 @@ con precisión en la respuesta equivocada.
   $tau = 2$.],
 ) <fig:bootstrap>
 
+== Análisis de sensibilidad
+
+#evidencia(tipo: "simulación")[
+  Los resultados de esta sección describen propiedades del generador Monte Carlo
+  calibrado, no evidencia sobre poblaciones reales.
+]
+
+En $n = 1000$ con $B = 80$ réplicas y semillas fijas, la @tab:sensibilidad contrasta (i) dos recortes de propensidad en el IPW y (ii) la corrección de la mala especificación del OLS al incluir $X_3^2$, la fuente de confusión en el generador.
+
+#figure(
+  table(
+    columns: (2.4fr, 1fr, 1fr),
+    align: (left, center, center),
+    table.hline(stroke: 1pt),
+    table.header([Escenario], [Sesgo], [RMSE]),
+    table.hline(stroke: 0.5pt),
+    [IPW, recorte 0,02–0,98], [$+0.195$], [0.308],
+    [IPW, recorte 0,05–0,95], [$+0.300$], [0.354],
+    [OLS con $X_3^2$ (especificación completa)], [$-0.014$], [0.125],
+    table.hline(stroke: 1pt),
+  ),
+  caption: [Sensibilidad al recorte de propensidad (IPW) y a la especificación lineal ($tau = 2$, $n = 1000$, $B = 80$). Cifras en `results.json` → `sensibilidad`.],
+) <tab:sensibilidad>
+
+Endurecer el recorte de 0,02–0,98 a 0,05–0,95 *aumenta* el sesgo del IPW en esta simulación: se descartan unidades informativas en las colas de la propensidad. En contraste, añadir $X_3^2$ al OLS reduce el sesgo de $+0.95$ (Tabla 4.2) a $-0.014$, lo que falsaría la hipótesis de que «el sesgo del OLS es estructural» si la especificación se corrige —pero deja intacto el sesgo de la diferencia de medias.
+
 == Validación del modelo
 
-La validación verificó tres frentes. En el frente numérico, las semillas
-fijas garantizan reproducibilidad exacta y la convergencia del RMSE del DML
-es compatible con la velocidad $n^(-1/2)$ una vez descontado el sesgo
-inicial. En el frente de sensibilidad, duplicar el recorte de propensiones
-al $[0.05, 0.95]$ incrementa el sesgo del IPW y reduce su varianza, lo que
-confirma que el recorte es un compromiso y no una solución. En el frente
-inferencial, la sub-cobertura residual del DML (90.0 % con $n = 5000$) es
-compatible con la aproximación normal de la función de influencia y con la
-penalización finita de los aprendices; intervalos de tipo $t$ bootstrap
-reducen la brecha al costo de duplicar el cómputo.
+La validación verificó reproducibilidad numérica (semillas y `verificar_cifras.py`), convergencia del RMSE del DML compatible con $n^(-1/2)$ tras descontar sesgo finito, y honestidad inferencial: la cobertura residual del DML (90.0 % con $n = 5000$) refleja la aproximación normal de la función de influencia y el coste de los aprendices nuisance.
 
 = Discusión
 
@@ -812,6 +860,11 @@ caso concreto.
 = Conclusiones y recomendaciones
 
 == Conclusiones
+
+#evidencia(tipo: "simulación")[
+  Las conclusiones siguientes se refieren al generador Monte Carlo y a las
+  propiedades de los estimadores bajo ese diseño (no a una población empírica).
+]
 
 + El estimador de doble aprendizaje automático por parcialado, con
   aprendices de potenciación de gradiente y validación cruzada de cinco
@@ -880,6 +933,10 @@ con conocimiento de dominio.
 // =====================================================================
 #show: apendices
 
+= Apéndice de reproducibilidad
+
+Semillas por réplica: $2026 + 17 i$. Entorno: `requirements.txt` en el repositorio. Regeneración: `OMP_NUM_THREADS=1 python3 generar_recursos.py final`; sensibilidad sola: `… sensibilidad`. Verificación: `python3 verificar_cifras.py` y `./reproduce.sh` en la raíz del repositorio.
+
 = Matriz de consistencia
 
 La @tab:consistencia alinea los elementos estructurales de la
@@ -913,6 +970,14 @@ corresponder literalmente con el texto de los capítulos 1 y 3.
     [Metodología],
     [Simulación Monte Carlo, $n in {250, 1000, 5000}$, réplicas con semilla
     fija, cuatro estimadores, métricas de sesgo, RMSE, EE y cobertura.],
+    [Estimando],
+    [ATE $tau = E[Y(1) - Y(0)] = 2$ en el generador calibrado.],
+    [Supuestos de identificación],
+    [No confusión condicional, positividad y SUTVA en la simulación; violados
+    de forma controlada en DM y OLS omiso.],
+    [Criterio de falsación],
+    [Incluir $X_3^2$ en OLS o endurecer recorte IPW debería alterar sesgo/RMSE
+    (Tabla sensibilidad); cobertura del OLS omiso $<$ nominal con $n$ grande.],
     table.hline(stroke: 1pt),
   ),
   caption: [Matriz de consistencia de la investigación.],

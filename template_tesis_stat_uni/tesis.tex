@@ -567,12 +567,15 @@ def bootstrap_ci(data, n_bootstrap=1000, alpha=0.05):
 \toprule
 \textbf{Elemento} & \textbf{Descripción} \\
 \midrule
-Problema & ... \\
-Objetivo general & ... \\
-Objetivos específicos & ... \\
-Hipótesis & ... \\
-Variables / constructos & ... \\
-Metodología (diseño, técnica, procedimiento) & ... \\
+Problema & Estimación del efecto causal $\tau$ bajo confusión no lineal (sustituya por su problema). \\
+Objetivo general & Desarrollar y evaluar un marco inferencial causal con rigor y reproducibilidad. \\
+Objetivos específicos & (i) Formalizar estimando y supuestos; (ii) ejecutar el diseño; (iii) contrastar estimadores. \\
+Hipótesis & Formulaciones falsables vinculadas a resultados (véase demo Typst del repositorio). \\
+Variables / constructos & Tratamiento $A$, respuesta $Y$, covariables $X$, estimando $\tau$. \\
+Metodología & Diseño, fuente de datos, identificación, estimación, sensibilidad, software versionado. \\
+Estimando & $\tau = \mathbb{E}[Y(1) - Y(0)]$ (ATE u otro estimando justificado). \\
+Supuestos de identificación & No confusión condicional, positividad, SUTVA (+ los del diseño). \\
+Criterio de falsación & Qué resultado haría insostenible la hipótesis causal. \\
 \bottomrule
 \end{longtable}
 
@@ -583,22 +586,23 @@ Metodología (diseño, técnica, procedimiento) & ... \\
 \toprule
 \textbf{Variable} & \textbf{Dimensión} & \textbf{Indicador} & \textbf{Instrumento / Cálculo} \\
 \midrule
-... & ... & ... & ... \\
-... & ... & ... & ... \\
+Efecto causal ($\tau$) & Impacto & Diferencia de medias potenciales & Estimador principal + sensibilidad. \\
+Propensión $e(X)$ & Asignación & $P(A=1\mid X)$ & Modelo de tratamiento declarado. \\
+Confusión & Estructura & Asociación no causal $X \to Y$ & DAG, balance, diagnósticos. \\
 \bottomrule
 \end{longtable}
 
-% ------------------------------------------------------------------------
-% TUS APÉNDICES ORIGINALES (SE MANTIENEN)
-% ------------------------------------------------------------------------
+\chapter{Apéndice de reproducibilidad}
+\noindent Declare semillas, versiones exactas (\texttt{requirements.txt} o \texttt{renv.lock}), un comando que regenera cifras y figuras, y el verificador que compara texto vs \texttt{results.json}. Véase la demo en \texttt{plantilla\_tesis\_uni\_typst/} del repositorio del grupo.
+
 \chapter{Demostraciones Técnicas}
-\lipsum[24]
+\noindent Incluya aquí las demostraciones omitidas en el cuerpo o remítase a la fuente canónica citada. No use texto de relleno en la versión final.
 
 \chapter{Código Fuente}
-\lipsum[25]
+\noindent Enlace al repositorio público con QR en metodología; fragmentos esenciales pueden reproducirse en el apéndice.
 
 \chapter{Datos Suplementarios}
-\lipsum[26]
+\noindent Diccionario de variables, agregados o procedimiento de acceso si los microdatos son reservados.
 
 \end{appendices}
 

@@ -197,6 +197,8 @@ semillas fijas):
 OMP_NUM_THREADS=1 python3 generar_recursos.py        # todo (~5 min, 2 núcleos)
 OMP_NUM_THREADS=1 python3 generar_recursos.py 250    # un escenario
 OMP_NUM_THREADS=1 python3 generar_recursos.py final  # figuras + results.json
+OMP_NUM_THREADS=1 python3 generar_recursos.py sensibilidad  # solo Tabla sensibilidad
+./reproduce.sh   # desde la raíz del repositorio
 ```
 
 Si edita el experimento, regenere y actualice las cifras del texto de
