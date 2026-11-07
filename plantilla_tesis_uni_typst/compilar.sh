@@ -2,8 +2,9 @@
 # =====================================================================
 # compilar.sh — Compilación de la tesis (plantilla UNI · Typst)
 # Uso:
-#   ./compilar.sh            compila tesis.typ → tesis.pdf
-#   ./compilar.sh vigilante  recompila al guardar cambios
+#   ./compilar.sh              compila tesis.typ → tesis.pdf
+#   ./compilar.sh doctorado    compila tesis_doctorado.typ
+#   ./compilar.sh vigilante    recompila al guardar tesis.typ
 # =====================================================================
 set -e
 cd "$(dirname "$0")"
@@ -15,11 +16,17 @@ if ! command -v typst >/dev/null 2>&1; then
   exit 1
 fi
 
-if [ "$1" = "vigilante" ]; then
+ARCHIVO="tesis.typ"
+SALIDA="tesis.pdf"
+if [ "${1:-}" = "doctorado" ]; then
+  ARCHIVO="tesis_doctorado.typ"
+  SALIDA="tesis_doctorado.pdf"
+elif [ "${1:-}" = "vigilante" ]; then
   echo "▸ Compilando en modo vigilante (Ctrl+C para salir)…"
   typst watch tesis.typ
-else
-  echo "▸ Compilando tesis.typ…"
-  typst compile tesis.typ
-  echo "✓ Generado: tesis.pdf"
+  exit 0
 fi
+
+echo "▸ Compilando ${ARCHIVO}…"
+typst compile "$ARCHIVO" "$SALIDA"
+echo "✓ Generado: ${SALIDA}"

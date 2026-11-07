@@ -35,6 +35,7 @@ instalar fuentes. Compilar en [typst.app](https://typst.app) funciona igual
 
 ```bash
 ./compilar.sh               # produce tesis.pdf
+./compilar.sh doctorado     # produce tesis_doctorado.pdf (esqueleto)
 ./compilar.sh vigilante     # recompila al guardar
 # o directamente:
 typst compile tesis.typ
@@ -44,7 +45,8 @@ typst compile tesis.typ
 
 ```
 tesis_uni_typst/
-├── tesis.typ               ← documento principal (contenido: edítelo)
+├── tesis.typ               ← demo maestría (DML completo)
+├── tesis_doctorado.typ     ← esqueleto doctoral (estudios I–III + §2.5 brecha)
 ├── plantilla.typ           ← módulo de estilo (tipografía, entornos, índices)
 ├── referencias.bib         ← base bibliográfica BibLaTeX/BibTeX
 ├── logo_uni.png            ← emblema institucional (portada)
