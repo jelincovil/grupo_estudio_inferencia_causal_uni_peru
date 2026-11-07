@@ -18,7 +18,7 @@ Plantilla profesional de LaTeX para tesis doctorales diseñada siguiendo los est
 ## 📁 Estructura de Archivos
 
 ```
-latex_project/
+plantilla_tesis_uni_latex/
 ├── tesis.tex                           # Archivo principal
 ├── referencias.bib                     # Base de datos bibliográfica
 ├── compilar.sh                         # Compilación con latexmk (recomendado)

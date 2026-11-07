@@ -159,7 +159,8 @@ un programa exigente.
 > Cuando incorpore una tesis a un listado del grupo, siga el formato de ficha de
 > [`04-guia-referencias.md`](04-guia-referencias.md) §5, con DOI o handle
 > resuelto y la línea de «por qué está aquí». Las listas heredadas
-> (`Ejemplo_tesis_meastria/`, `Ejemplos_de_tesis/`) **no** cumplen ese formato y
+> El listado curado actual está en `ejemplos_tesis/README.md`. Los listados
+> heredados (dos carpetas duplicadas) **no** cumplían ese formato y
 > están pendientes de depuración: no las use como fuente hasta entonces.
 
 ---

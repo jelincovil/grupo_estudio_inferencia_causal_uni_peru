@@ -24,7 +24,7 @@
 ```
 grupo_estudio_inferencia_causal_uni_peru/
 ├── README.md                         ← raíz (incompleto: "Objetivos" vacío, links sin llenar)
-├── template_tesis_stat_uni/          ← plantilla LaTeX (tesis maestría/doctorado)
+├── plantilla_tesis_uni_latex/        ← plantilla LaTeX (tesis maestría/doctorado)
 │   ├── tesis_template_uni.tex
 │   ├── GUIA_COMPLETA.md / README.md / referencias.bib
 │   ├── compilar_v2.sh
@@ -33,8 +33,7 @@ grupo_estudio_inferencia_causal_uni_peru/
 │   ├── tesis.typ (demo DML) / plantilla.typ / referencias.bib
 │   ├── generar_recursos.py / results.json / compilar.sh
 │   └── figuras/
-├── Ejemplo_tesis_meastria/README.md  ← listado de tesis premiadas
-└── Ejemplos_de_tesis/README.md       ← listado casi duplicado del anterior
+└── ejemplos_tesis/README.md          ← tesis de referencia (maestría + doctorado)
 ```
 
 ---
@@ -71,7 +70,7 @@ Debilidades:
 4. **Dependencias sin fijar versiones** (`pip install numpy scipy matplotlib …` sin
    `requirements.txt`/lock). No se reporta la versión de software usada.
 
-### 3.2 Plantilla LaTeX (`template_tesis_stat_uni/`) — **buena estructura, detalles a corregir**
+### 3.2 Plantilla LaTeX (`plantilla_tesis_uni_latex/`) — **buena estructura, detalles a corregir**
 
 Fortalezas: arquitectura modular, entornos `amsthm`, `biblatex`-APA, `booktabs`,
 `cleveref`, metadatos PDF, checklist pre-entrega.
@@ -88,7 +87,7 @@ Debilidades:
    `.synctex.gz`, `.toc`, `.lof`, `.lot`, `.pdf` y `templatetesis.zip` no deberían
    estar en el repositorio (falta `.gitignore`).
 
-### 3.3 Ejemplos de tesis (`Ejemplo_tesis_meastria/`, `Ejemplos_de_tesis/`) — **débiles**
+### 3.3 Ejemplos de tesis (`ejemplos_tesis/`) — **reescrito (curado)**
 
 - Contenido casi duplicado entre ambos `README.md`.
 - Afirmaciones sin trazabilidad verificable ("información basada en búsquedas recientes

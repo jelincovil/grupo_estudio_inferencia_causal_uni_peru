@@ -16,7 +16,7 @@ fi
 
 if command -v latexmk >/dev/null 2>&1; then
   echo "== latexmk (plantilla LaTeX) =="
-  (cd "$ROOT/template_tesis_stat_uni" && latexmk -pdf -interaction=nonstopmode tesis.tex >/dev/null)
+  (cd "$ROOT/plantilla_tesis_uni_latex" && latexmk -pdf -interaction=nonstopmode tesis.tex >/dev/null)
 else
   echo "AVISO: latexmk no instalado; se omite LaTeX."
 fi

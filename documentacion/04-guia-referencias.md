@@ -163,9 +163,9 @@ Protocolo, en orden:
 
 ### Auditoría del material heredado
 
-Los listados `Ejemplo_tesis_meastria/README.md` y `Ejemplos_de_tesis/README.md`
-de este repositorio son el ejemplo de lo que esta sección previene. Defectos
-constatados:
+El listado heredado (antes duplicado en dos carpetas) era el ejemplo de lo que
+esta sección previene. El reemplazo vivo es `ejemplos_tesis/README.md`. Defectos
+que motivaron la auditoría (archivos antiguos):
 
 | Defecto | Evidencia |
 |---|---|

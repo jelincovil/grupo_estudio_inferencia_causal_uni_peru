@@ -1,7 +1,8 @@
 # Documentación · Grupo de Estudio de Inferencia Causal UNI
 
 Carpeta de referencia para quienes escriben una tesis de maestría o doctorado
-con las plantillas de este repositorio. No contiene plantillas: contiene los
+con las plantillas de este repositorio (`plantilla_tesis_uni_latex/`,
+`plantilla_tesis_uni_typst/`). No contiene plantillas: contiene los
 **criterios** con que se juzga un documento académico de alto nivel —
 estructurales, editoriales, visuales, matemáticos y bibliográficos— y la
 biblioteca de enlaces verificados del grupo.

@@ -34,5 +34,5 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra biber
       - name: Compilar plantilla LaTeX
-        working-directory: template_tesis_stat_uni
+        working-directory: plantilla_tesis_uni_latex
         run: latexmk -pdf -interaction=nonstopmode tesis.tex

@@ -9,7 +9,7 @@
 <br>
 
 [![Plantilla Typst](https://img.shields.io/badge/Plantilla-Typst-239dad?style=flat-square)](plantilla_tesis_uni_typst/)
-[![Plantilla LaTeX](https://img.shields.io/badge/Plantilla-LaTeX-008080?style=flat-square&logo=latex&logoColor=white)](template_tesis_stat_uni/)
+[![Plantilla LaTeX](https://img.shields.io/badge/Plantilla-LaTeX-008080?style=flat-square&logo=latex&logoColor=white)](plantilla_tesis_uni_latex/)
 [![Demo DML](https://img.shields.io/badge/Demo-Monte_Carlo_·_DML-3776AB?style=flat-square&logo=python&logoColor=white)](plantilla_tesis_uni_typst/generar_recursos.py)
 [![Licencia](https://img.shields.io/badge/Licencia-CC_BY_4.0-lightgrey?style=flat-square)](https://creativecommons.org/licenses/by/4.0/)
 
@@ -28,9 +28,8 @@
 | :--- | :--- |
 | [`documentacion/`](documentacion/) | Guías 00–06: modelo de tesis, editorial, visual, fórmulas, referencias, LaTeX↔Typst, enlaces UNI |
 | [`plantilla_tesis_uni_typst/`](plantilla_tesis_uni_typst/) | Plantilla **Typst** + demo completa (Chernozhukov et al. 2018, tablas, figuras, `verificar_cifras.py`) |
-| [`template_tesis_stat_uni/`](template_tesis_stat_uni/) | Plantilla **LaTeX** modular (biblatex-APA, entornos matemáticos, `latexmk`) |
-| [`Ejemplo_tesis_meastria/`](Ejemplo_tesis_meastria/) | Referencias de tesis premiadas (maestría) |
-| [`Ejemplos_de_tesis/`](Ejemplos_de_tesis/) | Listado complementario de ejemplos |
+| [`plantilla_tesis_uni_latex/`](plantilla_tesis_uni_latex/) | Plantilla **LaTeX** modular (biblatex-APA, entornos matemáticos, `latexmk`) |
+| [`ejemplos_tesis/`](ejemplos_tesis/) | Tesis de referencia verificadas (maestría y doctorado, un solo listado) |
 
 ---
 
@@ -41,9 +40,8 @@ flowchart TB
   subgraph raiz["Repositorio"]
     R[README]
     T[plantilla_tesis_uni_typst]
-    L[template_tesis_stat_uni]
-    E1[Ejemplo_tesis_meastria]
-    E2[Ejemplos_de_tesis]
+    L[plantilla_tesis_uni_latex]
+    E[ejemplos_tesis]
   end
   T --> T1[tesis.typ · demo DML]
   T --> T2[generar_recursos.py · results.json]
@@ -80,7 +78,7 @@ Requisitos: [Typst](https://github.com/typst/typst/releases) ≥ 0.15 · Python 
 <summary><strong>LaTeX</strong> — compilar la plantilla</summary>
 
 ```bash
-cd template_tesis_stat_uni
+cd plantilla_tesis_uni_latex
 ./compilar.sh    # latexmk + biber
 ```
 

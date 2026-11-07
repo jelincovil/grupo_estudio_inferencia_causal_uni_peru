@@ -3,6 +3,11 @@
 El repositorio mantiene la misma plantilla en dos sistemas. Esta tabla permite
 pasar de uno a otro sin reaprender, y decidir con qué empezar.
 
+| Carpeta en el repo | Archivo principal |
+|---|---|
+| `plantilla_tesis_uni_latex/` | `tesis.tex` |
+| `plantilla_tesis_uni_typst/` | `tesis.typ` (demo), `tesis_doctorado.typ` (esqueleto) |
+
 ---
 
 ## 1 · Cuál elegir
