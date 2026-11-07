@@ -26,10 +26,10 @@
 
 | Recurso | Qué encontrará |
 | :--- | :--- |
-| [**`plantilla_tesis_uni_typst/``**](plantilla_tesis_uni_typst/) | Plantilla **Typst** + demo completa (Chernozhukov et al. 2018, tablas, figuras, `verificar_cifras.py`) |
-| [**`template_tesis_stat_uni/``**](template_tesis_stat_uni/) | Plantilla **LaTeX** modular (biblatex-APA, entornos matemáticos, `latexmk`) |
-| [**`Ejemplo_tesis_meastria/``**](Ejemplo_tesis_meastria/) | Referencias de tesis premiadas (maestría) |
-| [**`Ejemplos_de_tesis/``**](Ejemplos_de_tesis/) | Listado complementario de ejemplos |
+| [`plantilla_tesis_uni_typst/`](plantilla_tesis_uni_typst/) | Plantilla **Typst** + demo completa (Chernozhukov et al. 2018, tablas, figuras, `verificar_cifras.py`) |
+| [`template_tesis_stat_uni/`](template_tesis_stat_uni/) | Plantilla **LaTeX** modular (biblatex-APA, entornos matemáticos, `latexmk`) |
+| [`Ejemplo_tesis_meastria/`](Ejemplo_tesis_meastria/) | Referencias de tesis premiadas (maestría) |
+| [`Ejemplos_de_tesis/`](Ejemplos_de_tesis/) | Listado complementario de ejemplos |
 
 ---
 
