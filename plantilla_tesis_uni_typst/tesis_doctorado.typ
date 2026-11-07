@@ -78,7 +78,7 @@ Nombre el trabajo más cercano (autor, año, qué hizo) y lo que *no* resolvió.
 La contribución de esta tesis se define *contra* ese trabajo.
 
 #aviso([Prueba de suficiencia doctoral])[
-  Una oración: «Antes de esta tesis no se sabía ___; ahora se sabía porque ___.»
+  Una oración: «Antes de esta tesis no se sabía …; ahora se sabe porque …»
   Si el segundo hueco es solo «apliqué X a Y», reencuadre el alcance.
 ]
 
