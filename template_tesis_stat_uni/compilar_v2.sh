@@ -1,12 +1,10 @@
 #!/bin/bash
 
 # ========================================================================
-# Script de Compilación Automática - Tesis Doctoral v2.0 Final
-# ========================================================================
-# Este script ejecuta el ciclo completo de compilación con validación
+# Script heredado (pdflatex manual). Preferir: ./compilar.sh (latexmk).
 # ========================================================================
 
-ARCHIVO="tesis_doctoral_v2_final"
+ARCHIVO="tesis"
 LOG_DIR="/tmp/latex_logs"
 
 # Crear directorio de logs

@@ -327,7 +327,7 @@ un problema bien planteado; @breiman2001random estableció que el
 agregamiento de árboles débilmente correlacionados reduce drásticamente la
 varianza sin sacrificar la adaptabilidad. Sobre esas bases se construyeron
 los aprendices flexibles que hoy alimentan los métodos de doble aprendizaje
-automático. Para los fundamentos de probabilidad e inferencia clásica, el
+automático @chernozhukov2018double. Para los fundamentos de probabilidad e inferencia clásica, el
 trabajo se apoya en los tratados de @casella2002statistical y
 @wasserman2006all.
 
@@ -454,6 +454,14 @@ herede la normalidad asintótica del @thm:clt.
 
 == Estado del arte
 
+El marco de doble aprendizaje automático (*double/debiased machine learning*)
+formalizado por @chernozhukov2018double combina estimación flexible de funciones
+nuisance, ortogonalidad del funcional del parámetro de interés y
+validación cruzada (*cross-fitting*) para obtener inferencia válida sobre
+efectos causales y parámetros estructurales en el régimen de alta
+dimensionalidad. La implementación de esta tesis sigue la variante DML2 del
+modelo parcialmente lineal descrito en ese trabajo.
+
 La confluencia entre regularización e inferencia cristalizó en la pasada
 década. @hastie2015statistical sistematizaron la estadística con esparsidad
 —el lasso y sus generalizaciones— y @friedman2010regularization aportaron
@@ -519,6 +527,37 @@ la relación entre precisión y sesgo.
 
 == Técnicas estadísticas
 
+El estimando de interés en todo el experimento es el *efecto promedio del
+tratamiento* (ATE),
+$ tau = E[Y(1) - Y(0)] = E[Y mid A = 1, X] - E[Y mid A = 0, X] $
+bajo los supuestos de identificación en la @tab:ident.
+
+#figure(
+  table(
+    columns: (1.4fr, 1.2fr, 1.2fr, 1.6fr),
+    align: (left, center, center, left),
+    table.hline(stroke: 1pt),
+    table.header(
+      [Estimador], [No confusión], [Positividad / overlap], [Amenaza principal en la demo],
+    ),
+    table.hline(stroke: 0.5pt),
+    [Diferencia de medias], [No], [—], [Confusión no controlada: sesgo ≈ $+2.4$ estable en $n$.],
+    [IPW (logístico)], [Cond.], [Cond.], [Modelo de propensidad correcto; recorte 0,02–0,98 mitiga colas.],
+    [OLS ajustado], [No], [—], [Especificación lineal omitiendo $X_3^2$: confusión residual.],
+    [DML (gradiente)], [Cond.], [Cond.], [Errores nuisance en muestras pequeñas; decae con $n$.],
+    table.hline(stroke: 1pt),
+    table.cell(colspan: 4, align: left)[
+      #text(size: 9.5pt)[
+        Cond. = requiere identificación condicional bajo no confusión y positividad
+        $(Y(0), Y(1)) perp A mid X$, $0 < e(x) < 1$; se asume en el generador pero
+        no en DM ni en OLS mal especificado. SUTVA/consistencia: unidades
+        independientes, sin interferencia (válido en la simulación).
+      ]
+    ],
+  ),
+  caption: [Supuestos de identificación y amenaza dominante por estimador en el diseño Monte Carlo.],
+) <tab:ident>
+
 Los cuatro estimadores comparados se formalizan a continuación. La
 diferencia de medias, $ hat(tau)_"DM" = overline(Y)_1 - overline(Y)_0 $,
 ignora la confusión y sirve de línea base. La ponderación por probabilidad
@@ -550,7 +589,8 @@ su error estándar deriva de la función de influencia empírica.
 
 == Implementación computacional
 
-La implementación usa Python 3.12 con NumPy y scikit-learn. El código
+La implementación usa Python 3.12 con las versiones fijadas en
+`requirements.txt` (NumPy, SciPy, scikit-learn, Matplotlib, Segno). El código
 completo —incluido el generador, los cuatro estimadores y el protocolo de
 réplicas— está disponible en el repositorio del grupo de estudio; el
 apéndice D reproduce las piezas esenciales. El @cod:dml muestra la función

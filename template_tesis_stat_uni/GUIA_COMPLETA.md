@@ -145,17 +145,17 @@ $$
 
 ```bash
 cd /home/ubuntu/latex_project
-pdflatex -interaction=nonstopmode tesis_doctoral_v2_final.tex
-biber tesis_doctoral_v2_final
-pdflatex -interaction=nonstopmode tesis_doctoral_v2_final.tex
-pdflatex -interaction=nonstopmode tesis_doctoral_v2_final.tex
+pdflatex -interaction=nonstopmode tesis.tex
+biber tesis
+pdflatex -interaction=nonstopmode tesis.tex
+pdflatex -interaction=nonstopmode tesis.tex
 ```
 
 ### Script Automático (Actualizado)
 
 ```bash
 #!/bin/bash
-ARCHIVO="tesis_doctoral_v2_final"
+ARCHIVO="tesis"
 
 echo "Compilando tesis doctoral..."
 pdflatex -interaction=nonstopmode ${ARCHIVO}.tex > /dev/null 2>&1
@@ -307,7 +307,7 @@ Antes de entregar tu tesis, verifica:
 
 ```
 proyecto_tesis/
-├── tesis_doctoral_v2_final.tex    # Archivo principal
+├── tesis.tex    # Archivo principal
 ├── referencias.bib                 # Base de datos bibliográfica
 ├── figuras/                        # Directorio de figuras
 │   ├── capitulo1/

@@ -21,7 +21,7 @@ bibliografía cita obras existentes.
 | Herramienta | Versión | Notas |
 |---|---|---|
 | Typst | 0.15 o superior | `cargo install typst-cli` o binario de [releases](https://github.com/typst/typst/releases) |
-| Python (solo para regenerar figuras) | 3.10+ | `pip install numpy scipy matplotlib scikit-learn segno` |
+| Python (solo para regenerar figuras) | 3.10+ | `pip install -r requirements.txt` |
 
 La tipografía (**New Computer Modern**) viene incluida con Typst: no hay que
 instalar fuentes. Compilar en [typst.app](https://typst.app) funciona igual
@@ -47,6 +47,8 @@ tesis_uni_typst/
 ├── figuras/                ← figuras del ejemplo (PNG 300 dpi + QR en SVG)
 ├── generar_recursos.py     ← regenera figuras y cifras del experimento demo
 ├── results.json            ← cifras del experimento Monte Carlo de la demo
+├── verificar_cifras.py     ← comprueba coherencia Tabla 4.2 ↔ results.json
+├── requirements.txt        ← versiones fijadas del entorno Python
 ├── compilar.sh             ← script de compilación
 └── README.md               ← esta guía
 ```
@@ -170,6 +172,19 @@ Todo vive en `plantilla.typ`:
 
 ## Reproducibilidad de la demo
 
+### Generador y variables (simulación)
+
+| Símbolo | Definición | Rol |
+|---|---|---|
+| $X_1,\ldots,X_5$ | $X_1,X_3,X_4,X_5 \sim N(0,1)$; $X_2 \sim t_3/\sqrt{3}$ | Confusores y ruido |
+| $e(X)$ | $\mathrm{logit}^{-1}(1.1 X_1 - 0.7 X_2 + 0.9(X_3^2-1))$ | Propensión |
+| $A$ | $\mathrm{Bernoulli}(e(X))$ | Tratamiento |
+| $Y$ | $\tau A + m(X) + \varepsilon$, $\tau=2$, $\varepsilon \sim N(0,1.5^2)$ | Respuesta |
+| Réplica $i$ | semilla `2026 + 17·i` | Reproducibilidad |
+
+Estimando: **ATE** $\tau = E[Y(1)-Y(0)]$. Supuestos del generador: no confusión
+condicional, positividad y SUTVA (unidades independientes).
+
 Las cifras de la Tabla 4.2, las figuras de cobertura y bootstrap y el QR
 provienen de `generar_recursos.py` (generador calibrado, cuatro estimadores,
 semillas fijas):
@@ -181,7 +196,11 @@ OMP_NUM_THREADS=1 python3 generar_recursos.py final  # figuras + results.json
 ```
 
 Si edita el experimento, regenere y actualice las cifras del texto de
-`tesis.typ` con los valores de `results.json`.
+`tesis.typ` con los valores de `results.json`, luego ejecute:
+
+```bash
+python3 verificar_cifras.py   # debe imprimir OK
+```
 
 ## Lista de verificación previa a la entrega
 

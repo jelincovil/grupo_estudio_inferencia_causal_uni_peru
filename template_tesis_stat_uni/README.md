@@ -19,9 +19,10 @@ Plantilla profesional de LaTeX para tesis doctorales diseñada siguiendo los est
 
 ```
 latex_project/
-├── tesis_doctoral_internacional.tex    # Archivo principal
+├── tesis.tex                           # Archivo principal
 ├── referencias.bib                     # Base de datos bibliográfica
-├── compilar.sh                         # Script de compilación automática
+├── compilar.sh                         # Compilación con latexmk (recomendado)
+├── compilar_v2.sh                      # Legado: pdflatex manual
 ├── GUIA_DE_USO.md                      # Guía detallada de uso
 ├── README.md                           # Este archivo
 ├── logo_uni.png                        # Logo institucional
@@ -32,7 +33,7 @@ latex_project/
 
 ### 1. Personalizar Metadatos
 
-Edita las siguientes líneas en `tesis_maestria-doctoral_internacional.tex`:
+Edita las siguientes líneas en `tesis.tex`:
 
 ```latex
 \newcommand{\doctitle}{Título de la Tesis Doctoral}
@@ -50,10 +51,7 @@ Edita las siguientes líneas en `tesis_maestria-doctoral_internacional.tex`:
 
 #### Opción B: Compilación manual
 ```bash
-pdflatex tesis_doctoral_internacional.tex
-biber tesis_doctoral_internacional
-pdflatex tesis_doctoral_internacional.tex
-pdflatex tesis_doctoral_internacional.tex
+latexmk -pdf tesis.tex
 ```
 
 ### 3. Agregar Referencias

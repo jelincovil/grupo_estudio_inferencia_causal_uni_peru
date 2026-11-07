@@ -1,0 +1,26 @@
+.DS_Store
+
+# LaTeX
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.pdf
+*.zip
+
+# Typst (PDF generado localmente)
+plantilla_tesis_uni_typst/tesis.pdf
+
+# Python
+__pycache__/
+*.pyc
+.venv/
