@@ -8,11 +8,12 @@ con criterio editorial: composición clásica de libro, aperturas de capítulo,
 cabeceras vivas, entornos matemáticos con numeración compartida, tablas al
 estilo *booktabs* y bibliografía APA localizada al español.
 
-El documento de ejemplo (`tesis.typ`) es una **demo completa y coherente** —
-una mini-tesis sobre estimación causal con doble aprendizaje automático—:
-todo el texto es real (nada de *lorem ipsum*), las cifras de las tablas y de
-las figuras provienen de un experimento Monte Carlo reproducible y la
-bibliografía cita obras existentes.
+El archivo `tesis.typ` incluye un **documento de ejemplo** terminado (PDF
+versionado) para que vea portada, capítulos, tablas y bibliografía ya
+maquetados. El tema del ejemplo es el de un trabajo del grupo; **sustituya**
+título, texto y referencias por los de su tesis. Las cifras del ejemplo son
+reproducibles (`generar_recursos.py`, `verificar_cifras.py`) solo si decide
+conservar ese contenido.
 
 ---
 

@@ -1,74 +1,63 @@
-# Empiece aquí
+# Empiece aquí (tesista UNI)
 
-No elija plantilla todavía. Primero, una pregunta que el seminario del grupo suele plantear:
+Este repositorio le da **formato y criterios de redacción**, no el contenido de su investigación. Siga este orden.
 
-> **¿Su intervalo puede ser estrecho y estar completamente equivocado?**
+## 1 · Normativa institucional
 
-En este repositorio la respuesta es **sí**, con números que puede verificar en menos de un minuto.
+Antes de elegir Typst o LaTeX, revise lo que la UNI y la FIEECS exigen (márgenes, carátula, entrega al repositorio institucional):
 
-## 1 · La lección (60 s)
+- [Reglamentos UNI · DIRCE](https://dirce.uni.edu.pe/reglamentos-uni) (*Formato de Presentación de Tesis*, entre otros)
+- Enlaces curados: [`documentacion/06-biblioteca-enlaces.md`](documentacion/06-biblioteca-enlaces.md)
 
-```bash
-python3 leccion_60s.py
-```
+## 2 · Elija plantilla
 
-Abra [`docs/la_leccion.html`](docs/la_leccion.html) en el navegador si prefiere la imagen antes que la terminal.
-
-Si necesita citar el demo en una línea:
-
-```bash
-python3 leccion_60s.py --compartir
-```
-
-## 2 · Normativa antes que formato
-
-- [Formato de Presentación de Tesis (DIRCE UNI)](https://dirce.uni.edu.pe/reglamentos-uni)
-- Secretaría FIEECS y guías de entrega al repositorio institucional
-
-Detalle curado: [`documentacion/06-biblioteca-enlaces.md`](documentacion/06-biblioteca-enlaces.md)
-
-## 3 · Qué tipo de afirmación defiende
-
-Lea [`documentacion/00-modelo-tesis.md`](documentacion/00-modelo-tesis.md) §1 y complete:
-
-*«Antes de esta tesis no se sabía ______; ahora se sabe porque ______.»*
-
-Si el segundo hueco solo dice «apliqué X a Y», el trabajo es de **maestría** (categoría, no defecto).
-
-## 4 · Estimando y supuestos (una página)
-
-Antes del capítulo 1: parámetro causal nombrado, tabla supuesto × estimador, al menos un análisis de sensibilidad.
-
-Guía: [`documentacion/00-modelo-tesis.md`](documentacion/00-modelo-tesis.md) §2.
-
-## 5 · Elija herramienta
-
-| Si… | Use… |
+| Situación | Carpeta |
 | :--- | :--- |
-| Quiere la demo causal completa ya escrita | [`plantilla_tesis_uni_typst/`](plantilla_tesis_uni_typst/) |
-| Prefiere LaTeX clásico (andamio + `\lipsum`) | [`plantilla_tesis_uni_latex/`](plantilla_tesis_uni_latex/) |
-| No sabe | [`documentacion/05-equivalencias-latex-typst.md`](documentacion/05-equivalencias-latex-typst.md) |
+| Quiere ver un PDF completo de referencia y trabajar en Typst | [`plantilla_tesis_uni_typst/`](plantilla_tesis_uni_typst/) |
+| Prefiere LaTeX / biblatex-APA | [`plantilla_tesis_uni_latex/`](plantilla_tesis_uni_latex/) |
+| No está seguro | [`documentacion/05-equivalencias-latex-typst.md`](documentacion/05-equivalencias-latex-typst.md) |
 
-## 6 · Compile la demo antes de escribir
+En Typst encontrará un **documento de ejemplo** (`tesis.pdf`). Cópielo como punto de partida y sustituya título, capítulos y bibliografía por los suyos.
+
+En LaTeX el cuerpo trae texto de relleno (`\lipsum`); la utilidad es la **estructura** (preliminares, capítulos, apéndices, APA).
+
+## 3 · Compile una vez en su máquina
 
 ```bash
-./reproduce.sh
+# Typst
+cd plantilla_tesis_uni_typst && ./compilar.sh
+
+# o LaTeX
+cd plantilla_tesis_uni_latex && ./compilar.sh
 ```
 
-Si `verificar_cifras.py` falla, arregle el entorno **ahora**, no la semana de la entrega.
+Si no compila, resuelva dependencias **antes** de escribir cientos de páginas.
 
-## 7 · Escriba con las guías abiertas
+## 4 · Lea las guías mientras escribe
 
-| Guía | Para… |
+| Archivo | Uso |
 | :--- | :--- |
-| [`01-guia-editorial.md`](documentacion/01-guia-editorial.md) | Vocabulario causal, tiempos verbales, números en español |
-| [`03-guia-formulas.md`](documentacion/03-guia-formulas.md) | τ vs τ̂, notación |
-| [`04-guia-referencias.md`](documentacion/04-guia-referencias.md) | APA, verificación de enlaces |
+| [`00-modelo-tesis.md`](documentacion/00-modelo-tesis.md) | Orden de capítulos (maestría / doctorado) |
+| [`01-guia-editorial.md`](documentacion/01-guia-editorial.md) | Tiempos verbales, resumen, discusión, números en español |
+| [`02-guia-visual.md`](documentacion/02-guia-visual.md) | Tablas, figuras, tipografía |
+| [`03-guia-formulas.md`](documentacion/03-guia-formulas.md) | Notación matemática |
+| [`04-guia-referencias.md`](documentacion/04-guia-referencias.md) | APA, higiene del `.bib`, verificar enlaces |
 
-## 8 · Antes de entregar al asesor
+Las guías priorizan normativa UNI/FIEECS sobre recomendaciones internas del grupo (está indicado en cada archivo).
 
-Lista de verificación: [`01-guia-editorial.md`](documentacion/01-guia-editorial.md) §7.
+## 5 · Metadatos y portada
+
+Edite **un solo bloque** de metadatos en la plantilla elegida (autor, título, grado oficial de su programa, asesor). El grado debe coincidir con el nombre que publica la Unidad de Posgrado FIEECS.
+
+## 6 · Bibliografía y tesis de referencia
+
+- Use `referencias.bib` de la plantilla como modelo de campos APA.
+- Para ver trabajos ajenos bien citados: [`ejemplos_tesis/README.md`](ejemplos_tesis/README.md) (solo entradas verificadas).
+
+## 7 · Antes de entregar al asesor
+
+Lista de comprobación: [`01-guia-editorial.md`](documentacion/01-guia-editorial.md) §7.
 
 ---
 
-*Grupo de Estudio de Inferencia Causal · UNI · Perú*
+*Mantenido por el Grupo de Estudio de Inferencia Causal · UNI · Perú*

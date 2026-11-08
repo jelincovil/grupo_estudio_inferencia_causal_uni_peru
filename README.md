@@ -10,54 +10,36 @@
 
 [![Plantilla Typst](https://img.shields.io/badge/Plantilla-Typst-239dad?style=flat-square)](plantilla_tesis_uni_typst/)
 [![Plantilla LaTeX](https://img.shields.io/badge/Plantilla-LaTeX-008080?style=flat-square&logo=latex&logoColor=white)](plantilla_tesis_uni_latex/)
-[![Demo DML](https://img.shields.io/badge/Demo-Monte_Carlo_·_DML-3776AB?style=flat-square&logo=python&logoColor=white)](plantilla_tesis_uni_typst/generar_recursos.py)
+[![Guías](https://img.shields.io/badge/Guías-documentación-555?style=flat-square)](documentacion/)
 [![Licencia](https://img.shields.io/badge/Licencia-CC_BY_4.0-lightgrey?style=flat-square)](https://creativecommons.org/licenses/by/4.0/)
 
 <br>
 
-*Plantillas de tesis para maestría y doctorado, alineadas a la Unidad de Posgrado,*  
-*con una mini-tesis demostrativa sobre estimación causal reproducible (DML).*
+*Herramientas para tesistas de la UNI (maestría y doctorado):*  
+*plantillas de redacción, guías de formato y referencias de tesis verificadas.*
 
 <br>
 
-[![Empezar aquí](https://img.shields.io/badge/Empezar_aquí-ruta_del_tesista-555?style=flat-square)](EMPEZAR_AQUI.md)
-[![Mini-tesis PDF](https://img.shields.io/badge/Demo-PDF-239dad?style=flat-square)](plantilla_tesis_uni_typst/tesis.pdf)
+[![Empezar aquí](https://img.shields.io/badge/Empezar_aquí-paso_a_paso-239dad?style=flat-square)](EMPEZAR_AQUI.md)
 
 </div>
 
 ---
 
-## Lo que enseña la mini-tesis
+## Qué hay en este repositorio
 
-El grupo elaboró una demo reproducible para que quien llegue al seminario vea, con cifras verificables, una distinción que costó años entender en muchos currículos: **precisión no es causalidad**. Con **τ = 2** y **n = 5 000**, el OLS mal especificado sigue con sesgo ≈ **+0,95** y **0 %** de cobertura al 95 %: el error estándar encoge; la conclusión errónea no.
+No es un curso ni un paquete de métodos: es un **kit de trabajo** para quien escribe su tesis en la Facultad.
 
-<p align="center">
-  <img src="plantilla_tesis_uni_typst/figuras/cap4_bootstrap.png" alt="Bootstrap del OLS: intervalo estrecho, centrado lejos de la verdad" width="560">
-  <br>
-  <sub><em>El remuestreo mide variabilidad, no corrección.</em></sub>
-</p>
-
-```bash
-python3 leccion_60s.py              # resume las cifras en terminal (sin NumPy)
-python3 leccion_60s.py --compartir  # una línea para citar el demo
-```
-
-La misma idea en HTML: [`docs/la_leccion.html`](docs/la_leccion.html). Si desea publicarla, active **GitHub Pages** (*Settings → Pages → GitHub Actions*).
-
-Si va a escribir su tesis, empiece por [`EMPEZAR_AQUI.md`](EMPEZAR_AQUI.md).
-
----
-
-## Navegación rápida
-
-| Recurso | Qué encontrará |
+| Pieza | Para qué sirve |
 | :--- | :--- |
-| [`EMPEZAR_AQUI.md`](EMPEZAR_AQUI.md) | Ruta del tesista + lección de 60 s |
-| [`docs/la_leccion.html`](docs/la_leccion.html) | Resumen visual de la demo (bootstrap y cobertura) |
-| [`documentacion/`](documentacion/) | Guías 00–06: modelo de tesis, editorial, visual, fórmulas, referencias, LaTeX↔Typst, enlaces UNI |
-| [`plantilla_tesis_uni_typst/`](plantilla_tesis_uni_typst/) | Plantilla **Typst** + demo completa (Chernozhukov et al. 2018, tablas, figuras, `verificar_cifras.py`) |
-| [`plantilla_tesis_uni_latex/`](plantilla_tesis_uni_latex/) | Plantilla **LaTeX** modular (biblatex-APA, entornos matemáticos, `latexmk`) |
-| [`ejemplos_tesis/`](ejemplos_tesis/) | Tesis de referencia verificadas (maestría y doctorado, un solo listado) |
+| [`plantilla_tesis_uni_typst/`](plantilla_tesis_uni_typst/) | Plantilla **Typst** con estructura UNI, APA y un **PDF de ejemplo** (`tesis.pdf`) que muestra cómo se ve un documento terminado |
+| [`plantilla_tesis_uni_latex/`](plantilla_tesis_uni_latex/) | Plantilla **LaTeX** (andamio estructural; compila con `latexmk` + `biber`) |
+| [`documentacion/`](documentacion/) | Criterios de redacción: modelo de capítulos, estilo, tablas, fórmulas, referencias, equivalencias LaTeX↔Typst, enlaces a normativa UNI |
+| [`ejemplos_tesis/`](ejemplos_tesis/) | Fichas de tesis ajenas **con enlace comprobado** (maestría y doctorado) |
+
+El grupo de estudio mantiene el material; cualquier tesista de la UNI puede clonarlo y adaptarlo a su tema.
+
+**Si empieza hoy:** [`EMPEZAR_AQUI.md`](EMPEZAR_AQUI.md).
 
 ---
 
@@ -65,58 +47,65 @@ Si va a escribir su tesis, empiece por [`EMPEZAR_AQUI.md`](EMPEZAR_AQUI.md).
 
 ```mermaid
 flowchart TB
-  subgraph raiz["Repositorio"]
-    R[README]
+  subgraph repo["Repositorio"]
+    G[EMPEZAR_AQUI.md]
+    Doc[documentacion]
     T[plantilla_tesis_uni_typst]
     L[plantilla_tesis_uni_latex]
     E[ejemplos_tesis]
   end
-  T --> T1[tesis.typ · demo DML]
-  T --> T2[generar_recursos.py · results.json]
-  L --> L1[tesis.tex]
-  L --> L2[compilar.sh · referencias.bib]
+  G --> Doc
+  G --> T
+  G --> L
+  T --> T1[tesis.typ · plantilla + ejemplo]
+  L --> L1[tesis.tex · estructura]
 ```
 
 ---
 
-## Objetivos
-
-- **Plantillas** en LaTeX y Typst coherentes con la guía metodológica de la Unidad de Posgrado UNI.
-- **Rigor causal**: identificación, estimandos (ATE), citas canónicas y reproducibilidad de cifras.
-- **Espacio de estudio** para integrantes y asesorados en estadística aplicada e inferencia causal.
-
----
-
-## Inicio rápido
+## Compilar las plantillas
 
 <details>
-<summary><strong>Typst</strong> — compilar la demo</summary>
+<summary><strong>Typst</strong></summary>
 
 ```bash
-./reproduce.sh                # verificar cifras + compilar Typst (y LaTeX si hay latexmk)
 cd plantilla_tesis_uni_typst
 ./compilar.sh
 ```
 
-Requisitos: [Typst](https://github.com/typst/typst/releases) ≥ 0.15 · Python 3.10+ con `pip install -r requirements.txt` para regenerar figuras.
+Requisito: [Typst](https://github.com/typst/typst/releases) ≥ 0.15.  
+El PDF de ejemplo (`tesis.pdf`) ya está en el repositorio; recompile solo si editó `tesis.typ`.
+
+Si regenera figuras del ejemplo: Python 3.10+ y `pip install -r requirements.txt` (ver README de esa carpeta).
 
 </details>
 
 <details>
-<summary><strong>LaTeX</strong> — compilar la plantilla</summary>
+<summary><strong>LaTeX</strong></summary>
 
 ```bash
 cd plantilla_tesis_uni_latex
-./compilar.sh    # latexmk + biber
+./compilar.sh
 ```
 
-Requisitos: TeX Live con `latexmk`, `biber` y paquetes estándar de la plantilla.
+Requisitos: TeX Live con `latexmk`, `biber`, `texlive-lang-spanish`.
+
+</details>
+
+<details>
+<summary><strong>Verificación automática</strong> (mantenimiento del repo)</summary>
+
+```bash
+./reproduce.sh
+```
+
+Ejecuta coherencia de cifras del ejemplo Typst y compilación en CI. No es obligatorio para redactar su propia tesis.
 
 </details>
 
 ---
 
-## Integrantes
+## Integrantes del grupo
 
 | Integrante | Enlace |
 | :--- | :---: |
@@ -132,6 +121,6 @@ Requisitos: TeX Live con `latexmk`, `biber` y paquetes estándar de la plantilla
 
 <div align="center">
 
-<sub>Grupo de Estudio de Inferencia Causal · UNI Perú · 2026</sub>
+<sub>Herramientas para tesistas · UNI · Perú · 2026</sub>
 
 </div>

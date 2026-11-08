@@ -1,6 +1,6 @@
 # Plantilla LaTeX de Tesis Maestria/Doctoral 
 
-> **Andamio estructural:** el cuerpo usa texto de relleno (`\lipsum`). Para ver una tesis de ejemplo completa (DML, figuras, `verificar_cifras.py`), use [`plantilla_tesis_uni_typst/`](../plantilla_tesis_uni_typst/).
+> **Andamio estructural:** el cuerpo usa texto de relleno (`\lipsum`). Para ver un PDF de ejemplo con contenido real, use [`plantilla_tesis_uni_typst/tesis.pdf`](../plantilla_tesis_uni_typst/tesis.pdf).
 
 ## 📋 Descripción
 

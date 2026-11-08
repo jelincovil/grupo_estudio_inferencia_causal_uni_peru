@@ -2,7 +2,7 @@
 
 ## 📋 Descripción
 
-Plantilla profesional de LaTeX para tesis, alineada a la guía metodológica del repositorio. La compilación se verifica en CI con `latexmk` (Ubuntu, TeX Live). Para una demo con contenido causal completo, use la plantilla Typst del mismo repositorio.
+Plantilla profesional de LaTeX para tesis, alineada a las guías de `documentacion/`. La compilación se verifica en CI con `latexmk` (Ubuntu, TeX Live). El PDF de ejemplo completo está en `plantilla_tesis_uni_typst/tesis.pdf`.
 
 ## ✅ Validación y Robustez
 

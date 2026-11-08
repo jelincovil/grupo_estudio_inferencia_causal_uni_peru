@@ -1,16 +1,14 @@
 # Documentación · Grupo de Estudio de Inferencia Causal UNI
 
-Carpeta de referencia para quienes escriben una tesis de maestría o doctorado
-con las plantillas de este repositorio (`plantilla_tesis_uni_latex/`,
-`plantilla_tesis_uni_typst/`). No contiene plantillas: contiene los
-**criterios** con que se juzga un documento académico de alto nivel —
-estructurales, editoriales, visuales, matemáticos y bibliográficos— y la
-biblioteca de enlaces verificados del grupo.
+Carpeta de **guías para tesistas** que usan las plantillas del repositorio
+(`plantilla_tesis_uni_latex/`, `plantilla_tesis_uni_typst/`). No contiene
+plantillas: contiene criterios de estructura, redacción, maquetación,
+fórmulas y referencias, además de enlaces a normativa UNI verificados.
 
-La regla que organiza toda la carpeta: **una tesis se evalúa por la cadena
-estimando → identificación → estimación → sensibilidad, y se lee por su
-tipografía.** Lo primero decide si el trabajo es válido; lo segundo, si alguien
-lo leerá hasta el final.
+Parte del material refleja la práctica del Grupo de Estudio de Inferencia
+Causal (por ejemplo, capítulos de metodología en trabajos cuantitativos).
+Use lo que corresponda a su tema; la normativa UNI/FIEECS siempre prevalece
+(avisado en los archivos 00, 02 y 06).
 
 ---
 
