@@ -1,5 +1,8 @@
 .DS_Store
 
+# Artefacto local (ruta creada por error al abrir URLs en el IDE)
+https/
+
 # LaTeX
 *.aux
 *.bbl
