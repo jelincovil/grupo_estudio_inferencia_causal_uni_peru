@@ -1,0 +1,46 @@
+name: Error de compilación
+description: La plantilla Typst o LaTeX no compila en su entorno
+title: "[compilación] "
+labels: ["compilación"]
+body:
+  - type: dropdown
+    id: motor
+    attributes:
+      label: Motor
+      options:
+        - Typst
+        - LaTeX
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Versión (Typst o TeX Live)
+      placeholder: "p. ej. typst 0.15.1 / TeX Live 2024"
+    validations:
+      required: true
+  - type: textarea
+    id: comando
+    attributes:
+      label: Comando ejecutado
+      placeholder: "./compilar.sh o latexmk -pdf tesis.tex"
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Salida del error (últimas ~40 líneas)
+      render: shell
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Sistema operativo
+      options:
+        - Linux
+        - macOS
+        - Windows (WSL)
+        - Otro
+    validations:
+      required: true

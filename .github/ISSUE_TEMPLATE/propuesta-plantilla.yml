@@ -1,0 +1,32 @@
+name: Propuesta de plantilla o guía
+description: Sugerencia de mejora en formato UNI, APA o documentación
+title: "[plantilla] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problema
+    attributes:
+      label: Qué fricción resuelve
+      description: Normativa UNI, APA, compilación, estructura de capítulos, etc.
+    validations:
+      required: true
+  - type: checkboxes
+    id: alcance
+    attributes:
+      label: Ámbito
+      options:
+        - label: plantilla_tesis_uni_typst
+        - label: plantilla_tesis_uni_latex
+        - label: documentacion/
+        - label: ejemplos_tesis/
+  - type: textarea
+    id: propuesta
+    attributes:
+      label: Cambio propuesto
+    validations:
+      required: true
+  - type: textarea
+    id: fuente
+    attributes:
+      label: Fuente normativa (si aplica)
+      placeholder: Enlace DIRCE/FIEECS o guía UNI verificable
