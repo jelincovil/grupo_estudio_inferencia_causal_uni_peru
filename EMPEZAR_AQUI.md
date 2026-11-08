@@ -1,6 +1,6 @@
 # Empiece aquí
 
-No elija plantilla todavía. Primero la pregunta incómoda:
+No elija plantilla todavía. Primero, una pregunta que el seminario del grupo suele plantear:
 
 > **¿Su intervalo puede ser estrecho y estar completamente equivocado?**
 
@@ -14,7 +14,7 @@ python3 leccion_60s.py
 
 Abra [`docs/la_leccion.html`](docs/la_leccion.html) en el navegador si prefiere la imagen antes que la terminal.
 
-Comparta el resultado:
+Si necesita citar el demo en una línea:
 
 ```bash
 python3 leccion_60s.py --compartir

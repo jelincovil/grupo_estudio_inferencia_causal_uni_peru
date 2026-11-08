@@ -44,7 +44,7 @@ def main() -> int:
     parser.add_argument(
         "--compartir",
         action="store_true",
-        help="Texto corto para pegar en redes (sin colores).",
+        help="Una línea de resumen (sin colores ANSI).",
     )
     args = parser.parse_args()
 
@@ -84,7 +84,7 @@ def main() -> int:
 
     print()
     print(f"{CYN}{B}╔════════════════════════════════════════════════════════════════════╗{R}")
-    print(f"{CYN}{B}║  INTERVALO MENTIROSO · Grupo Inferencia Causal UNI · τ = {TAU:.0f}           ║{R}")
+    print(f"{CYN}{B}║  LECCIÓN DEMOSTRATIVA · Grupo de Estudio · Inferencia Causal · UNI · τ = {TAU:.0f} ║{R}")
     print(f"{CYN}{B}╚════════════════════════════════════════════════════════════════════╝{R}")
     print(f"{D}  Datos simulados con confusión no lineal · n = {N_SHOW:,} · cifras en results.json{R}")
     print()
@@ -110,7 +110,7 @@ def main() -> int:
     print(f"  {B}Precisión ≠ causalidad.{R} Por eso esta plantilla exige sensibilidad y verificación.")
     print()
     print(f"  {D}Siguiente paso:{R}")
-    print(f"    {MAG}python3 leccion_60s.py --compartir{R}     # texto para LinkedIn / X")
+    print(f"    {MAG}python3 leccion_60s.py --compartir{R}     # resumen en una línea")
     print(f"    {MAG}open docs/la_leccion.html{R}           # experiencia visual")
     print(f"    {MAG}./reproduce.sh{R}                     # PDF + coherencia de cifras")
     print()
