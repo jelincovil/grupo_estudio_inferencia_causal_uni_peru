@@ -134,7 +134,7 @@ Cada criterio enlaza su **procedencia** (mem0, OpenAlex, Jina/web, Firecrawl) y 
 |---|---|---|---|
 | C1 | Citar y verificar la norma UNI vigente | Firecrawl | Referenciar **R.R. Nº 3145-2023-UNI-DN** y la guía de la Unidad de Posgrado (con fecha y enlace) en lugar de afirmarlo sin cita. |
 | C2 | Homologar estructura LaTeX ↔ Typst | consistencia interna | Unificar portada, "Copia de documentos", matriz de consistencia y de operacionalización en ambas plantillas. |
-| C3 | Plantilla alineada a líneas de investigación | Firecrawl (reglamento) | Enlazar la demo a una línea de investigación declarada de la FIECS/Unidad de Posgrado. |
+| C3 | Plantilla alineada a líneas de investigación | Firecrawl (reglamento) | Enlazar la demo a una línea de investigación declarada de la FIEECS/Unidad de Posgrado. |
 
 ### D. Calidad editorial y gobernanza del repo
 

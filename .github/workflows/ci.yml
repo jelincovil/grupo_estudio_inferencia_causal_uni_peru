@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Instalar Typst
         run: |
-          curl -fsSL https://github.com/typst/typst/releases/download/v0.13.1/typst-x86_64-unknown-linux-musl.tar.xz | tar -xJ
+          curl -fsSL https://github.com/typst/typst/releases/download/v0.15.1/typst-x86_64-unknown-linux-musl.tar.xz | tar -xJ
           sudo mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
       - uses: actions/setup-python@v5
         with:
@@ -24,6 +24,7 @@ jobs:
           cd plantilla_tesis_uni_typst
           python3 verificar_cifras.py
           typst compile tesis.typ
+          typst compile tesis_doctorado.typ
 
   latex:
     runs-on: ubuntu-latest
@@ -32,7 +33,9 @@ jobs:
       - name: TeX Live + latexmk
         run: |
           sudo apt-get update
-          sudo apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra biber
+          sudo apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended texlive-bibtex-extra texlive-lang-spanish \
+            texlive-science texlive-pictures biber
       - name: Compilar plantilla LaTeX
         working-directory: plantilla_tesis_uni_latex
         run: latexmk -pdf -interaction=nonstopmode tesis.tex

@@ -2,22 +2,17 @@
 
 ## 📋 Descripción
 
-Plantilla profesional de LaTeX para tesis validada con pruebas de estrés exhaustivas. Diseñada siguiendo estándares internacionales de publicaciones científicas de alto impacto (IMS, AOAS). **Lista para uso en producción universitaria.**
+Plantilla profesional de LaTeX para tesis, alineada a la guía metodológica del repositorio. La compilación se verifica en CI con `latexmk` (Ubuntu, TeX Live). Para una demo con contenido causal completo, use la plantilla Typst del mismo repositorio.
 
 ## ✅ Validación y Robustez
 
-Esta versión ha sido sometida a:
-- ✓ Pruebas de estrés con contenido complejo
-- ✓ Validación de compilación en múltiples escenarios
-- ✓ Verificación de compatibilidad de paquetes
-- ✓ Optimización de configuraciones
-- ✓ Eliminación de warnings críticos
+Requisitos mínimos documentados en este archivo (incluye `texlive-lang-spanish` y `biber`). Cada cambio en `tesis.tex` debe compilar con `./compilar.sh` antes de entregar.
 
 ## 🆕 Mejoras de la Versión
 
 ### Nuevas Funcionalidades
 1. **Soporte para subfiguras** con paquete `subcaption`
-2. **Algoritmos profesionales** con `algorithm2e`
+2. **Listados de código** con `listings`
 3. **Código fuente con sintaxis** usando `listings`
 4. **Unidades científicas** con `siunitx`
 5. **Referencias cruzadas inteligentes** con `cleveref`
@@ -102,9 +97,9 @@ Ver Teorema \ref{thm:clt} en la página \pageref{thm:clt}.
 % Usar:
 Ver \cref{thm:clt}.  % Produce: "Ver Teorema 2.1"
 
-% Para múltiples referencias:
+% Para múltiples referencias (teorema y definición comparten contador):
 Ver \cref{thm:clt,def:prob_space,fig:principal}.
-% Produce: "Ver Teorema 2.1, Definición 2.1 y Figura 3.1"
+% Produce p. ej.: "Ver Teorema 2.1, Teorema 2.2 y Figura 3.1"
 ```
 
 ### 6. Operadores Matemáticos Personalizados
@@ -143,13 +138,13 @@ $$
 
 ### Método Recomendado
 
+Desde esta carpeta:
+
 ```bash
-cd /home/ubuntu/latex_project
-pdflatex -interaction=nonstopmode tesis.tex
-biber tesis
-pdflatex -interaction=nonstopmode tesis.tex
-pdflatex -interaction=nonstopmode tesis.tex
+./compilar.sh
 ```
+
+Equivale a `latexmk -pdf -interaction=nonstopmode tesis.tex` (resuelve pdflatex/biber automáticamente).
 
 ### Script Automático (Actualizado)
 

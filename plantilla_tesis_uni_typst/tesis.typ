@@ -10,12 +10,13 @@
 // ---------------------------------------------------------------------
 // METADATOS DEL DOCUMENTO (edite aquí)
 // ---------------------------------------------------------------------
+// Copie grado y tipo-doc del programa oficial (FIEECS); no imprima avisos largos aquí.
 #let meta = (
   titulo: "Estimación de efectos causales en datos observacionales mediante doble aprendizaje automático",
   autor: "Nombre del Autor",
   asesor: "Dr. Nombre del Asesor",
-  grado: "Doctorado en Ciencias e Ingeniería Estadística (verifique denominación oficial en su programa)",
-  tipo-doc: "Tesis doctoral (demo metodológica — sustituya por maestría o doctorado según corresponda)",
+  grado: "Doctor en Ciencias e Ingeniería Estadística",
+  tipo-doc: "Tesis doctoral",
   universidad: "Universidad Nacional de Ingeniería",
   facultad: "Facultad de Ingeniería Económica, Estadística y Ciencias Sociales",
   unidad: "Unidad de Posgrado",
@@ -149,7 +150,7 @@
 
   #aviso([Instrucciones])[
     Para insertar un documento digitalizado, colóquelo en la carpeta
-    #path("documentos/") e inclýyalo con
+    #raw("documentos/") e inclúyalo con
     #raw("#figure(image(\"documentos/acta.pdf\", width: 92%),
 caption: [Acta de aprobación del proyecto])", block: false).
     La plantilla se encarga del estilo del pie de figura.
@@ -810,15 +811,15 @@ En $n = 1000$ con $B = 80$ réplicas y semillas fijas, la @tab:sensibilidad cont
     table.hline(stroke: 1pt),
     table.header([Escenario], [Sesgo], [RMSE]),
     table.hline(stroke: 0.5pt),
-    [IPW, recorte 0,02–0,98], [$+0.195$], [0.308],
-    [IPW, recorte 0,05–0,95], [$+0.300$], [0.354],
-    [OLS con $X_3^2$ (especificación completa)], [$-0.014$], [0.125],
+    [IPW, recorte 0,02–0,98], [$+0{,}195$], [0{,}308],
+    [IPW, recorte 0,05–0,95], [$+0{,}300$], [0{,}354],
+    [OLS con $X_3^2$ añadido], [$-0{,}014$], [0{,}125],
     table.hline(stroke: 1pt),
   ),
   caption: [Sensibilidad al recorte de propensidad (IPW) y a la especificación lineal ($tau = 2$, $n = 1000$, $B = 80$). Cifras en `results.json` → `sensibilidad`.],
 ) <tab:sensibilidad>
 
-Endurecer el recorte de 0,02–0,98 a 0,05–0,95 *aumenta* el sesgo del IPW en esta simulación: se descartan unidades informativas en las colas de la propensidad. En contraste, añadir $X_3^2$ al OLS reduce el sesgo de $+0.95$ (Tabla 4.2) a $-0.014$, lo que falsaría la hipótesis de que «el sesgo del OLS es estructural» si la especificación se corrige —pero deja intacto el sesgo de la diferencia de medias.
+Endurecer el recorte de 0,02–0,98 a 0,05–0,95 *aumenta* el sesgo del IPW en esta simulación: se descartan unidades informativas en las colas de la propensidad. En contraste, añadir $X_3^2$ al OLS reduce el sesgo de $+0.95$ (Tabla 4.2) a $-0.014$, lo que *confirma* que la omisión del término no lineal —y no una falla intrínseca del estimador OLS— explica el sesgo persistente; el sesgo de la diferencia de medias no cambia con esta corrección.
 
 == Validación del modelo
 

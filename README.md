@@ -4,7 +4,7 @@
 
 # Grupo de Estudio de Inferencia Causal
 
-**Universidad Nacional de Ingeniería · FIECS · Perú**
+**Universidad Nacional de Ingeniería · FIEECS · Perú**
 
 <br>
 
@@ -18,7 +18,33 @@
 *Plantillas de tesis para maestría y doctorado, alineadas a la Unidad de Posgrado,*  
 *con una mini-tesis demostrativa sobre estimación causal reproducible (DML).*
 
+<br>
+
+[![Lección 60s](https://img.shields.io/badge/▶_Lección-60_segundos-e11d48?style=for-the-badge)](EMPEZAR_AQUI.md)
+[![PDF demo](https://img.shields.io/badge/Mini--tesis-PDF-239dad?style=for-the-badge)](plantilla_tesis_uni_typst/tesis.pdf)
+
 </div>
+
+---
+
+## La guinda: *precisión ≠ causalidad*
+
+Con **τ = 2** y **n = 5 000**, el OLS mal especificado sigue con sesgo ≈ **+0,95** y **0 %** de cobertura al 95 %: el error estándar encoge; la conclusion errónea no.
+
+<p align="center">
+  <img src="plantilla_tesis_uni_typst/figuras/cap4_bootstrap.png" alt="Bootstrap del OLS: intervalo estrecho, centrado lejos de la verdad" width="560">
+  <br>
+  <sub><em>El remuestreo mide variabilidad, no corrección.</em></sub>
+</p>
+
+```bash
+python3 leccion_60s.py              # terminal en 2 s, sin NumPy
+python3 leccion_60s.py --compartir  # texto listo para redes
+```
+
+Experiencia visual (ideal para compartir): abra [`docs/la_leccion.html`](docs/la_leccion.html) o active **GitHub Pages** en *Settings → Pages → GitHub Actions*.
+
+**Puerta de entrada del tesista:** [`EMPEZAR_AQUI.md`](EMPEZAR_AQUI.md)
 
 ---
 
@@ -26,6 +52,8 @@
 
 | Recurso | Qué encontrará |
 | :--- | :--- |
+| [`EMPEZAR_AQUI.md`](EMPEZAR_AQUI.md) | Ruta del tesista + lección de 60 s |
+| [`docs/la_leccion.html`](docs/la_leccion.html) | Página compartible *Intervalo mentiroso* |
 | [`documentacion/`](documentacion/) | Guías 00–06: modelo de tesis, editorial, visual, fórmulas, referencias, LaTeX↔Typst, enlaces UNI |
 | [`plantilla_tesis_uni_typst/`](plantilla_tesis_uni_typst/) | Plantilla **Typst** + demo completa (Chernozhukov et al. 2018, tablas, figuras, `verificar_cifras.py`) |
 | [`plantilla_tesis_uni_latex/`](plantilla_tesis_uni_latex/) | Plantilla **LaTeX** modular (biblatex-APA, entornos matemáticos, `latexmk`) |

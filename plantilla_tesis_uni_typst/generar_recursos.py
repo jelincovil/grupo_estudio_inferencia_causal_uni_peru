@@ -285,7 +285,7 @@ def correr_sensibilidad(n=1000, B=80):
         "IPW recorte 0.05–0.95": ("IPW (logístico)", (0.05, 0.95)),
     }
     out = {"n": n, "B": B, "trim_ipw": {}, "ols_con_x3_cuad": None}
-  # OLS con X3^2 (especificación correcta en el generador)
+    # OLS con X₃² añadido (omite interacción X₁X₂ del generador; residual inocuo)
     taus_ols_ok = []
     for i in range(B):
         rng = np.random.default_rng(2026 + 17 * i)

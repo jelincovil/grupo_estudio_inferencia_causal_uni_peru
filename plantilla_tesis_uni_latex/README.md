@@ -1,5 +1,7 @@
 # Plantilla LaTeX de Tesis Maestria/Doctoral 
 
+> **Andamio estructural:** el cuerpo usa texto de relleno (`\lipsum`). Para ver una tesis de ejemplo completa (DML, figuras, `verificar_cifras.py`), use [`plantilla_tesis_uni_typst/`](../plantilla_tesis_uni_typst/).
+
 ## 📋 Descripción
 
 Plantilla profesional de LaTeX para tesis doctorales diseñada siguiendo los estándares de publicaciones científicas de alto impacto (IMS, AOAS). Optimizada para investigaciones en Estadística, Matemáticas y Ciencias de Datos.
@@ -23,7 +25,7 @@ plantilla_tesis_uni_latex/
 ├── referencias.bib                     # Base de datos bibliográfica
 ├── compilar.sh                         # Compilación con latexmk (recomendado)
 ├── compilar_v2.sh                      # Legado: pdflatex manual
-├── GUIA_DE_USO.md                      # Guía detallada de uso
+├── GUIA_COMPLETA.md                    # Guía detallada de uso
 ├── README.md                           # Este archivo
 ├── logo_uni.png                        # Logo institucional
 └── figuras/                            # Directorio para imágenes (crear)
@@ -60,7 +62,7 @@ Edita el archivo `referencias.bib` con tus citas bibliográficas en formato BibL
 
 ## 📚 Documentación
 
-Consulta `GUIA_DE_USO.md` para:
+Consulta `GUIA_COMPLETA.md` para:
 - Uso de entornos matemáticos
 - Inserción de figuras y tablas
 - Gestión de citas bibliográficas

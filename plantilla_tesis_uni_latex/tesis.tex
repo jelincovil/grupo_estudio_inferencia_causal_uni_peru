@@ -19,7 +19,7 @@
 % ========================================================================
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[english,spanish]{babel}  % último idioma = idioma principal (español)
+\usepackage[english,spanish,es-tabla]{babel}  % último idioma = idioma principal (español)
 
 % Comandos personalizados para cambio rápido de idioma
 \newcommand{\texten}[1]{\foreignlanguage{english}{#1}}
@@ -44,30 +44,12 @@
 \newcommand{\docsubject}{Tesis Doctoral en Estadística}
 \newcommand{\docuniversity}{Universidad Nacional de Ingeniería}
 \newcommand{\docfaculty}{Facultad de Ingeniería Económica, Estadística y Ciencias Sociales}
-
-% Configuración avanzada de hyperref
-\usepackage{hyperref}
-\hypersetup{
-    pdftitle={\doctitle},
-    pdfauthor={\docauthor},
-    pdfsubject={\docsubject},
-    pdfkeywords={\dockeywords},
-    pdfcreator={LaTeX with hyperref},
-    pdfproducer={pdfLaTeX},
-    colorlinks=true,
-    linkcolor=blue,
-    citecolor=blue,
-    urlcolor=blue,
-    bookmarksnumbered=true,
-    bookmarksopen=true,
-    bookmarksopenlevel=2,
-    pdfstartview={FitH},
-    pdfpagemode=UseOutlines,
-    pdfpagelayout=OneColumn,
-    pdfdisplaydoctitle=true,
-    breaklinks=true,
-    unicode=true
-}
+\newcommand{\doctype}{Tesis Doctoral}
+\newcommand{\docgrade}{Doctor en Ciencias e Ingeniería Estadística}
+\newcommand{\docadvisor}{Dr. Nombre del Asesor}
+\newcommand{\docunit}{Unidad de Posgrado}
+\newcommand{\doccity}{Lima --- Perú}
+\newcommand{\docyear}{2026}
 
 % Comando robusto para generar códigos QR
 \newcommand{\qrlink}[2]{%
@@ -173,13 +155,8 @@
 }
 
 % ========================================================================
-% SOPORTE PARA ALGORITMOS Y CÓDIGO
+% SOPORTE PARA CÓDIGO
 % ========================================================================
-\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
-\SetAlFnt{\small}
-\SetAlCapFnt{\small}
-\SetAlCapNameFnt{\small}
-
 \usepackage{listings}
 \usepackage{xcolor}
 
@@ -213,7 +190,7 @@
 % ========================================================================
 \usepackage{siunitx}
 \sisetup{
-    output-decimal-marker = {.},
+    output-decimal-marker = {,},
     group-separator = {,},
     group-minimum-digits = 4,
     per-mode = symbol
@@ -260,6 +237,30 @@
 \usepackage{marginnote}
 \usepackage{lipsum}
 
+\usepackage{xurl}
+\usepackage{hyperref}
+\hypersetup{
+    pdftitle={\doctitle},
+    pdfauthor={\docauthor},
+    pdfsubject={\docsubject},
+    pdfkeywords={\dockeywords},
+    pdfcreator={LaTeX with hyperref},
+    pdfproducer={pdfLaTeX},
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue,
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    bookmarksopenlevel=2,
+    pdfstartview={FitH},
+    pdfpagemode=UseOutlines,
+    pdfpagelayout=OneColumn,
+    pdfdisplaydoctitle=true,
+    breaklinks=true,
+    unicode=true
+}
+
 \usepackage{cleveref}
 \crefname{theorem}{Teorema}{Teoremas}
 \crefname{lemma}{Lema}{Lemas}
@@ -299,11 +300,11 @@
     \vspace{0.5cm}
     {\scshape\Large \docfaculty \par}
     \vspace{0.5cm}
-    {\scshape\large Unidad de Posgrado \par}
+    {\scshape\large \docunit \par}
 
     \vspace{2cm}
 
-    {\bfseries\Large TESIS DOCTORAL \par}
+    {\bfseries\Large \MakeUppercase{\doctype} \par}
 
     \vspace{1.5cm}
 
@@ -312,7 +313,7 @@
     \vspace{2cm}
 
     {\large PARA OPTAR EL GRADO ACADÉMICO DE: \par}
-    {\bfseries\large DOCTOR EN CIENCIAS CON MENCIÓN EN ESTADÍSTICA \par}
+    {\bfseries\large \docgrade \par}
 
     \vspace{1.5cm}
 
@@ -322,12 +323,12 @@
     \vfill
 
     {\large ASESOR: \par}
-    {\bfseries\large Dr. Nombre del Asesor \par}
+    {\bfseries\large \docadvisor \par}
 
     \vfill
 
-    {\large LIMA - PERÚ \par}
-    {\large \the\year \par}
+    {\large \MakeUppercase{\doccity} \par}
+    {\large \docyear \par}
 \end{titlepage}
 
 % ------------------------------------------------------------------------

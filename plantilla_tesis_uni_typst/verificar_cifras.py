@@ -26,13 +26,23 @@ ROW_RE = re.compile(
     r"\[([^,\]]+)\],\s*\[\$?([\+\-]?\d+\.\d+)\$\],\s*\[(\d+\.\d+)\],\s*\[(\d+\.\d+)\],\s*\[(\d+(?:\.\d+)?)\s*%\]"
 )
 SENS_RE = re.compile(
-    r"\[([^\]]+)\],\s*\[\$([\+\-]?\d+\.\d+)\$\],\s*\[(\d+\.\d+)\]"
+    r"\[([^\]]+)\],\s*\[\$([\+\-]?\d+(?:\.\d+|\{,\}\d+))\$\],\s*\[(\d+(?:\.\d+|\{,\}\d+))\]"
 )
+
+SENS_LABELS = [
+    "IPW, recorte 0,02–0,98",
+    "IPW, recorte 0,05–0,95",
+    "OLS con $X_3^2$ añadido",
+]
+
+
+def _num(s: str) -> float:
+    return float(s.replace("{,}", ".").replace(",", "."))
 
 
 def load_json():
     with JSON.open(encoding="utf-8") as f:
-        return json.load(f)["resultados"]
+        return json.load(f)
 
 
 def parse_table(text: str) -> dict[tuple[str, int], dict[str, float]]:
@@ -82,7 +92,8 @@ def main() -> int:
     chunk = text[begin:end] if begin != -1 else text[:end]
 
     table = parse_table(chunk)
-    data = load_json()
+    raw = load_json()
+    data = raw["resultados"]
     errors = []
 
     for n in NS:
@@ -95,8 +106,10 @@ def main() -> int:
                         f"n={n} {method} {key}: tesis.typ={got[key]} results.json={exp[key]}"
                     )
 
-    sens = data.get("sensibilidad")
-    if sens and "<tab:sensibilidad>" in text:
+    sens = raw.get("sensibilidad")
+    if sens and "<tab:sensibilidad>" not in text:
+        errors.append("results.json trae «sensibilidad» pero tesis.typ no tiene <tab:sensibilidad>")
+    elif sens:
         end_s = text.find("<tab:sensibilidad>")
         start_s = text.rfind("#figure(", 0, end_s)
         chunk_s = text[start_s:end_s] if start_s != -1 else text[:end_s]
@@ -115,17 +128,23 @@ def main() -> int:
                 round(sens["ols_con_x3_cuad"]["rmse"], 3),
             ),
         ]
-        if len(sens_rows) >= 3:
+        if len(sens_rows) < 3:
+            errors.append("tabla sensibilidad: filas insuficientes en tesis.typ")
+        else:
             for i, (es, rm) in enumerate(expected):
-                got_s = float(sens_rows[i][1])
-                got_rm = float(sens_rows[i][2])
+                label_got = sens_rows[i][0].strip()
+                if label_got != SENS_LABELS[i]:
+                    errors.append(
+                        f"sensibilidad fila {i+1}: etiqueta «{label_got}» "
+                        f"(esperaba «{SENS_LABELS[i]}»)"
+                    )
+                got_s = _num(sens_rows[i][1])
+                got_rm = _num(sens_rows[i][2])
                 if got_s != es or got_rm != rm:
                     errors.append(
                         f"sensibilidad fila {i+1}: tesis.typ sesgo={got_s} rmse={got_rm} "
                         f"json sesgo={es} rmse={rm}"
                     )
-        else:
-            errors.append("tabla sensibilidad: filas insuficientes en tesis.typ")
 
     if errors:
         print("DRIFT detectado entre tesis.typ y results.json:")

@@ -10,7 +10,7 @@
   titulo: "Título de la tesis doctoral — sustituya por su contribución integrada",
   autor: "Nombre del Autor",
   asesor: "Dr. Nombre del Asesor",
-  grado: "Doctorado en Ciencias e Ingeniería Estadística (verifique en su programa)",
+  grado: "Doctor en Ciencias e Ingeniería Estadística",
   tipo-doc: "Tesis doctoral",
   universidad: "Universidad Nacional de Ingeniería",
   facultad: "Facultad de Ingeniería Económica, Estadística y Ciencias Sociales",

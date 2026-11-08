@@ -2,6 +2,11 @@
 # Verificación rápida del repositorio (sin regenerar Monte Carlo completo).
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
+
+if [[ "${1:-}" == "--leccion" ]]; then
+  exec python3 "$ROOT/leccion_60s.py"
+fi
+
 cd "$ROOT/plantilla_tesis_uni_typst"
 
 echo "== verificar_cifras.py =="
