@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "Si usa este material en un trabajo académico, por favor cítelo."
+type: software
+title: "Plantillas de tesis UNI — Typst y LaTeX"
+abstract: "Plantillas de tesis para la Universidad Nacional de Ingeniería (Perú) en Typst y LaTeX, con guías de redacción en español, ejemplos compilables y bibliografía APA. Mantenido por el Grupo de Estudio de Inferencia Causal."
+entity-authors:
+  - name: "Grupo de Estudio de Inferencia Causal — UNI (Universidad Nacional de Ingeniería, Perú)"
+repository-code: "https://github.com/jelincovil/grupo_estudio_inferencia_causal_uni_peru"
+url: "https://github.com/jelincovil/grupo_estudio_inferencia_causal_uni_peru/releases/tag/v0.1.0-demo"
+version: "0.1.0-demo"
+license: CC-BY-4.0
+keywords:
+  - tesis
+  - thesis-template
+  - typst
+  - latex
+  - uni-peru
+  - posgrado
+  - apa
+  - causal-inference
+languages:
+  - es

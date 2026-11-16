@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Preguntas y propuestas (Discussions)
+    url: https://github.com/jelincovil/grupo_estudio_inferencia_causal_uni_peru/discussions
+    about: Para dudas de uso, ideas y propuestas antes de abrir un issue.
+  - name: Guías y documentación
+    url: https://github.com/jelincovil/grupo_estudio_inferencia_causal_uni_peru/tree/main/documentacion
+    about: Redacción, tablas, fórmulas, equivalencias LaTeX↔Typst y normativa UNI.
