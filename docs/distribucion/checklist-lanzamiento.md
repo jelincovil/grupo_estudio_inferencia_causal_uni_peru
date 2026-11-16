@@ -7,8 +7,8 @@ Orden recomendado; cada paso es verificable antes del siguiente.
 3. [x] **README** con demostración (`docs/tesis-preview.png`) y inicio rápido
 4. [x] **Release** `v0.1.0-demo` con `tesis.pdf` adjunto (sha256 verificado contra el PDF versionado)
 5. [x] **CI** en verde en `main` tras merge del PR de descubrimiento
-6. [ ] PR a [awesome-typst](https://github.com/qjcg/awesome-typst) (texto en `awesome-pr.md`)
-7. [ ] Post en comunidad (borradores `post-reddit.md` / `post-hn.md`), solo tras 1–5
+6. [x] PR a [awesome-typst](https://github.com/qjcg/awesome-typst) — abierto 2026-11-16: [qjcg/awesome-typst#279](https://github.com/qjcg/awesome-typst/pull/279) (una sola entrada en la sección General, texto de `awesome-pr.md` adaptado al estilo de la lista)
+7. [ ] Post en comunidad (borradores `post-reddit.md` / `post-hn.md`) — **publicación a cargo del owner** (sin cuentas/credenciales del autor no se puede publicar por él); verificados consistentes con el repo (CC BY 4.0, topics, `latexmk`)
 
 ## Pendiente de owner
 

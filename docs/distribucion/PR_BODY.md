@@ -25,6 +25,6 @@
 
 ## Pendiente de confirmación del owner
 
-- <!-- TODO(owner): Añadir `LICENSE` (CC BY 4.0) en raíz. -->
-- <!-- TODO(owner): `bash docs/distribucion/aplicar-metadatos.sh` tras merge a main. -->
-- **Renombrar repo (no aplicado):** `plantillas-tesis-uni-peru` · `uni-thesis-templates-typst-latex`
+- ~~Añadir `LICENSE` (CC BY 4.0)~~ — **hecho** 2026-11-16: texto oficial completo; GitHub detecta `CC-BY-4.0`.
+- ~~`bash docs/distribucion/aplicar-metadatos.sh` tras merge a main~~ — **hecho** 2026-11-16 (15 topics + description + homepage aplicados; además el script tenía un bug `HOME=` que rompía gh → renombrado a `HOMEPAGE`).
+- **Renombrar repo (no aplicado):** `plantillas-tesis-uni-peru` · `uni-thesis-templates-typst-latex` — decisión pendiente del owner; ver recomendación en el informe.

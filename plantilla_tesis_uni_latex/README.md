@@ -4,9 +4,9 @@
 
 ## 📋 Descripción
 
-Plantilla profesional de LaTeX para tesis doctorales diseñada siguiendo los estándares de publicaciones científicas de alto impacto (IMS, AOAS). Optimizada para investigaciones en Estadística, Matemáticas y Ciencias de Datos.
+Plantilla LaTeX para tesis de maestría y doctorado. Estructura modular, bibliografía BibLaTeX/Biber (autor-año), entornos matemáticos y metadatos PDF automáticos.
 
-## ✨ Características Destacadas
+## ✨ Características
 
 - ✅ **Soporte bilingüe** (Español/Inglés) con comandos personalizados
 - ✅ **Metadatos PDF automáticos** para accesibilidad y búsqueda
@@ -117,7 +117,7 @@ Esta plantilla implementa las siguientes mejores prácticas:
 3. **Gestión bibliográfica moderna** con BibLaTeX/Biber
 4. **Accesibilidad digital** con metadatos PDF completos
 5. **Reproducibilidad** mediante enlaces a repositorios externos
-6. **Estética profesional** siguiendo journals de alto impacto
+6. **Tipografía de lectura prolongada** con jerarquía clara
 
 ## 📝 Licencia
 
