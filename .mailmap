@@ -1,0 +1,7 @@
+# Unificación de identidades de autor (git shortlog / git log --use-mailmap)
+# GitHub atribuye por email exacto; este archivo unifica nombres locales y
+# de máquina para clones y análisis. Las identidades públicas del dueño son
+# variedades del noreply de su cuenta jelincovil.
+Jaime Enrique Lincovil Curivil <39662084+jelincovil@users.noreply.github.com> Jaime E. Lincovil C. <39662084+jelincovil@users.noreply.github.com>
+Jaime Enrique Lincovil Curivil <39662084+jelincovil@users.noreply.github.com> Jaime Enrique Lincovil Curivil <enriquec@MacBook-Air-de-Jaime.local>
+Antonio Lam <alamg.phd.uni@gmail.com> alamg-phd <alamg.phd.uni@gmail.com>
