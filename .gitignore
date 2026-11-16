@@ -1,7 +1,10 @@
 .DS_Store
 
 # Artefacto local (ruta creada por error al abrir URLs en el IDE)
-https/
+https:/
+
+# Config local de Cursor
+.cursor/
 
 # LaTeX
 *.aux
