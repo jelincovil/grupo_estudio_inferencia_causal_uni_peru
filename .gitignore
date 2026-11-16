@@ -6,6 +6,9 @@ https:/
 # Config local de Cursor
 .cursor/
 
+# Artefactos de build de Rust (tools/tesis)
+tools/tesis/target/
+
 # LaTeX
 *.aux
 *.bbl
