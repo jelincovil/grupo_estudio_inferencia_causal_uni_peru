@@ -45,7 +45,7 @@ typst compile tesis.typ
 ## Estructura del paquete
 
 ```
-tesis_uni_typst/
+plantilla_tesis_uni_typst/
 ├── tesis.typ               ← demo maestría (DML completo)
 ├── tesis_doctorado.typ     ← esqueleto doctoral (estudios I–III + §2.5 brecha)
 ├── plantilla.typ           ← módulo de estilo (tipografía, entornos, índices)

@@ -138,11 +138,11 @@ Ejecuta coherencia de cifras del ejemplo Typst (`verificar_cifras.py`) y compila
 
 | Integrante | Enlace |
 | :--- | :---: |
-| German Arturo Marcillo Hernandez | [LinkedIn](https://www.linkedin.com/) |
+| German Arturo Marcillo Hernandez | — |
 | Randy Fernandez Palomino | [LinkedIn](https://www.linkedin.com/in/randy-fern%C3%A1ndez-palomino-913426179/) |
-| Antonio Lan | [LinkedIn](https://www.linkedin.com/) |
-| Angela Morales | [LinkedIn](https://www.linkedin.com/) |
-| Juan Carlos | [LinkedIn](https://www.linkedin.com/) |
+| Antonio Lan | — |
+| Angela Morales | — |
+| Juan Carlos | — |
 
 > Si falta su perfil, abra un issue o PR con el enlace correcto.
 
@@ -150,7 +150,9 @@ Ejecuta coherencia de cifras del ejemplo Typst (`verificar_cifras.py`) y compila
 
 ## Licencia
 
-Contenido del repositorio bajo [Creative Commons Atribución 4.0 Internacional (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/), salvo normativa institucional o obras de terceros citadas en las plantillas.
+© 2026 Grupo de Estudio de Inferencia Causal — UNI (Universidad Nacional de Ingeniería, Perú).
+
+Contenido del repositorio bajo [Creative Commons Atribución 4.0 Internacional (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/), salvo normativa institucional o obras de terceros citadas en las plantillas. El texto legal íntegro está en [`LICENSE`](LICENSE).
 
 <div align="center">
 

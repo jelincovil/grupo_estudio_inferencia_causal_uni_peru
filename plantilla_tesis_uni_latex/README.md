@@ -1,4 +1,4 @@
-# Plantilla LaTeX de Tesis Maestria/Doctoral 
+# Plantilla LaTeX de Tesis Maestría/Doctoral 
 
 > **Andamio estructural:** el cuerpo usa texto de relleno (`\lipsum`). Para ver un PDF de ejemplo con contenido real, use [`plantilla_tesis_uni_typst/tesis.pdf`](../plantilla_tesis_uni_typst/tesis.pdf).
 
@@ -71,9 +71,11 @@ Consulta `GUIA_COMPLETA.md` para:
 
 ## 🔧 Requisitos del Sistema
 
-### Paquetes de TeX Live necesarios:
+Necesitas `latexmk` (lo usan `compilar.sh` y la Opción B), `biber` y una distribución TeX Live completa. En Debian/Ubuntu:
+
 ```bash
 sudo apt-get install -y \
+    latexmk \
     texlive-latex-base \
     texlive-latex-extra \
     texlive-bibtex-extra \
@@ -81,6 +83,8 @@ sudo apt-get install -y \
     texlive-lang-spanish \
     biber
 ```
+
+En macOS (MacTeX o BasicTeX): `brew install --cask mactex` o `brew install --cask basictex` seguido de `tlmgr install latexmk biber collection-latexextra`.
 
 ## 📖 Ejemplo de Uso
 
