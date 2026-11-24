@@ -53,3 +53,10 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
       - name: cargo test (CLI tesis)
         run: cargo test --manifest-path tools/tesis/Cargo.toml
+
+  argument-audit:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - name: cargo test (argument-audit)
+        run: cargo test --workspace --manifest-path argument_audit_project/Cargo.toml

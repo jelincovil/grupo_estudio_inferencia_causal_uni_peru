@@ -1,0 +1,23 @@
+{
+  "phase": "F2",
+  "base_commit": null,
+  "implementation_commit": null,
+  "completed_gates": [],
+  "pending_gates": ["F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8"],
+  "blockers": [
+    "Destination repository advanced-statistics-agent-automation is not in this workspace",
+    "Lean runner, Typst audit, GLM adapter, and pickaxe are not implemented",
+    "No gate is complete until fmt, clippy, and tests are recorded against that repository"
+  ],
+  "commands_run": [
+    "cargo fmt --all",
+    "cargo clippy --workspace --all-targets -- -D warnings",
+    "cargo test --workspace",
+    "cargo run -- fixtures --dir ../argumentos_construccion_v1/examples",
+    "cargo test -p argument-card",
+    "cargo clippy --workspace --all-targets -- -D warnings",
+    "cargo run -- render --kernel examples/structural_alias.json --language es",
+    "cargo run -- align --kernel examples/structural_alias.json --text card.txt --language es"
+  ],
+  "next_action": "Copy argument_audit/ into the book repository and run F0 against the real tree without deleting existing work"
+}
