@@ -16,6 +16,19 @@ fn sealed_examples() -> PathBuf {
     workspace_root().join("../argumentos_construccion_v1/examples")
 }
 
+fn sealed_available() -> bool {
+    sealed_examples().is_dir()
+}
+
+macro_rules! skip_sin_paquete_sellado {
+    () => {
+        if !sealed_available() {
+            eprintln!("skipped: sealed package argumentos_construccion_v1 not present in this workspace");
+            return;
+        }
+    };
+}
+
 fn temp_path(name: &str) -> PathBuf {
     let dir = std::env::temp_dir().join(format!("argument-audit-cli-test-{}", std::process::id()));
     fs::create_dir_all(&dir).expect("temp dir");
@@ -65,6 +78,7 @@ fn a_rejected_kernel_exits_three_and_an_accepted_one_exits_zero() {
 
 #[test]
 fn require_verified_refuses_an_exit_zero_when_obligations_remain() {
+    skip_sin_paquete_sellado!();
     let pending = sealed_examples().join("valid_structure_pending.json");
     let output = binary()
         .args([
@@ -80,6 +94,7 @@ fn require_verified_refuses_an_exit_zero_when_obligations_remain() {
 
 #[test]
 fn the_sealed_fixture_set_passes_end_to_end() {
+    skip_sin_paquete_sellado!();
     let dir = sealed_examples();
     let output = binary()
         .args(["fixtures", "--dir", dir.to_str().expect("utf8")])
@@ -151,6 +166,7 @@ fn a_card_round_trips_through_render_and_align() {
 
 #[test]
 fn graph_emission_preserves_the_verdict_and_explain_is_read_only() {
+    skip_sin_paquete_sellado!();
     let invalid = sealed_examples().join("invalid_scope.json");
     let graph_path = temp_path("context-graph.json");
     let checked = binary()

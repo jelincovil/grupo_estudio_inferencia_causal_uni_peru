@@ -8,6 +8,19 @@ fn sealed_examples() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../../argumentos_construccion_v1/examples")
 }
 
+fn sealed_available() -> bool {
+    sealed_examples().is_dir()
+}
+
+macro_rules! skip_sin_paquete_sellado {
+    () => {
+        if !sealed_available() {
+            eprintln!("skipped: sealed package argumentos_construccion_v1 not present in this workspace");
+            return;
+        }
+    };
+}
+
 fn load_example(name: &str) -> Kernel {
     let path = sealed_examples().join(name);
     let bytes = fs::read(&path).unwrap_or_else(|err| panic!("read {}: {err}", path.display()));
@@ -16,6 +29,7 @@ fn load_example(name: &str) -> Kernel {
 
 #[test]
 fn sealed_examples_match_expected_accept_reject() {
+    skip_sin_paquete_sellado!();
     let dir = sealed_examples();
     let mut seen = 0;
     for entry in fs::read_dir(&dir).expect("examples dir") {
@@ -38,6 +52,7 @@ fn sealed_examples_match_expected_accept_reject() {
 
 #[test]
 fn pending_evidence_never_promotes_axes() {
+    skip_sin_paquete_sellado!();
     let report = check(&load_example("lean_anchor_pending.json"));
     assert_eq!(report.decision, Decision::StructurallyValid);
     assert!(!report.claim_supported);
@@ -62,6 +77,7 @@ fn pending_evidence_never_promotes_axes() {
 
 #[test]
 fn permuting_entries_does_not_change_the_report() {
+    skip_sin_paquete_sellado!();
     let kernel = load_example("valid_structure_pending.json");
     let first = serde_json::to_string(&check(&kernel)).expect("serialize");
     let mut reversed = kernel.clone();
@@ -80,6 +96,7 @@ fn permuting_entries_does_not_change_the_report() {
 
 #[test]
 fn an_acyclic_alternative_survives_a_cyclic_one() {
+    skip_sin_paquete_sellado!();
     let mut kernel = load_example("valid_structure_pending.json");
     kernel.arguments.push(argument_document::LoadedArgument {
         id: "A.bad".to_string(),
@@ -113,6 +130,7 @@ fn an_acyclic_alternative_survives_a_cyclic_one() {
 
 #[test]
 fn structural_profile_refuses_a_lean_rule() {
+    skip_sin_paquete_sellado!();
     let mut kernel = load_example("lean_anchor_pending.json");
     kernel.profile = ProfileId::Structural;
     let report = check(&kernel);
@@ -190,6 +208,7 @@ fn a_registered_runner_does_not_satisfy_an_empirical_record() {
 
 #[test]
 fn receipt_cannot_support_a_claim() {
+    skip_sin_paquete_sellado!();
     let kernel = load_example("empirical_pending.json");
     let spec = &kernel.evidence_specs[0];
     let hash = "ab".repeat(32);

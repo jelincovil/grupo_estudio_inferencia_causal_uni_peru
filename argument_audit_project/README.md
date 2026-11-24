@@ -110,7 +110,10 @@ cargo run -- explain --graph graph.json finding:scope_mismatch:A.Q
 
 ## Hardening and stress tests
 
-`cargo test --workspace` runs 99 tests. Beyond the unit and sealed-fixture
+`cargo test --workspace` runs 99 tests. The 10 tests that exercise the sealed
+fixture package (`argumentos_construccion_v1`, which is **not** included in
+this repository) skip with a notice when the package is absent; every other
+test always runs. Beyond the unit and sealed-fixture
 suites, adversarial integration tests live in `crates/*/tests/robustness.rs`,
 `crates/argument-audit/tests/graph.rs`, and
 `crates/argument-cli/tests/cli.rs`. They probe the contract boundaries:

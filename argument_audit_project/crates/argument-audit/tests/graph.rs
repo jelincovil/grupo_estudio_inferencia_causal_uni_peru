@@ -176,10 +176,14 @@ fn graph_loading_refuses_promotion_and_dangling_edges() {
 
 #[test]
 fn claim_explanations_include_diagnostics_from_concluding_arguments() {
-    let kernel = Kernel::load(include_bytes!(
-        "../../../../argumentos_construccion_v1/examples/invalid_scope.json"
-    ))
-    .expect("sealed fixture");
+    // Sealed package; ausente en esta copia pública. Se omite con aviso.
+    let path = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+        .join("../../../argumentos_construccion_v1/examples/invalid_scope.json");
+    let Ok(bytes) = std::fs::read(&path) else {
+        eprintln!("skipped: sealed package argumentos_construccion_v1 not present ({})", path.display());
+        return;
+    };
+    let kernel = Kernel::load(&bytes).expect("sealed fixture");
     let graph = graph(&kernel);
     let explanation = explain(&graph, "C.Q").expect("claim");
     assert!(explanation.direct_findings.is_empty());
