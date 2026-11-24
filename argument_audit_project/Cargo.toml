@@ -5,6 +5,7 @@ members = [
     "crates/argument-audit",
     "crates/argument-card",
     "crates/argument-cli",
+    "crates/argument-mcp",
 ]
 
 [workspace.package]

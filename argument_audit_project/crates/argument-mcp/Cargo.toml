@@ -1,0 +1,16 @@
+[package]
+name = "argument-mcp"
+version = "0.1.0"
+edition = "2021"
+description = "Servidor MCP (stdio) para argument-audit: check y explain como herramientas de agentes"
+license = "CC-BY-4.0"
+publish = false
+
+[[bin]]
+name = "argument-mcp"
+path = "src/main.rs"
+
+[dependencies]
+argument-audit = { path = "../argument-audit" }
+argument-document = { path = "../argument-document" }
+serde_json = "1"
