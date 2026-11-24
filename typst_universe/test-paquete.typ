@@ -1,8 +1,8 @@
-// Documento de prueba: verifica que el paquete uni-tesis compila.
-#import "preview/uni-tesis/0.1.0/lib.typ": *
+// Documento de prueba: verifica que el paquete causal-uni-tesis compila.
+#import "preview/causal-uni-tesis/0.1.0/lib.typ": *
 
 #let meta = (
-  titulo: "Documento de prueba del paquete uni-tesis",
+  titulo: "Documento de prueba del paquete causal-uni-tesis",
   autor: "Nombre del Autor",
   asesor: "Dr. Nombre del Asesor",
   grado: "Magíster en Ciencias e Ingeniería Estadística",
@@ -12,9 +12,9 @@
   unidad: "Unidad de Posgrado",
   ciudad: "Lima — Perú",
   anio: 2026,
-  logo: "../../../../plantilla_tesis_uni_typst/logo_uni.png",
+  logo: image("/plantilla_tesis_uni_typst/logo_uni.png", width: 24%),
   palabras-clave: ("prueba", "typst"),
-  resumen-corto: "Documento mínimo para validar el paquete uni-tesis.",
+  resumen-corto: "Documento mínimo para validar el paquete causal-uni-tesis.",
   repositorio: "https://github.com/jelincovil/grupo_estudio_inferencia_causal_uni_peru",
 )
 

@@ -1,0 +1,12 @@
+/Users/enriquec/Edicion_libros/cursos II 2026/grupo_estudio_inferencia_causal_uni_peru/argument_audit_project/target/debug/deps/thiserror-7218bcc32b4e5552.d: /Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/lib.rs /Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/aserror.rs /Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/display.rs /Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/var.rs /Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/private.rs /Users/enriquec/Edicion_libros/cursos\ II\ 2026/grupo_estudio_inferencia_causal_uni_peru/argument_audit_project/target/debug/build/thiserror-30ee4dbbba4621d5/out/private.rs
+
+/Users/enriquec/Edicion_libros/cursos II 2026/grupo_estudio_inferencia_causal_uni_peru/argument_audit_project/target/debug/deps/libthiserror-7218bcc32b4e5552.rmeta: /Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/lib.rs /Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/aserror.rs /Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/display.rs /Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/var.rs /Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/private.rs /Users/enriquec/Edicion_libros/cursos\ II\ 2026/grupo_estudio_inferencia_causal_uni_peru/argument_audit_project/target/debug/build/thiserror-30ee4dbbba4621d5/out/private.rs
+
+/Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/lib.rs:
+/Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/aserror.rs:
+/Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/display.rs:
+/Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/var.rs:
+/Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.21/src/private.rs:
+/Users/enriquec/Edicion_libros/cursos\ II\ 2026/grupo_estudio_inferencia_causal_uni_peru/argument_audit_project/target/debug/build/thiserror-30ee4dbbba4621d5/out/private.rs:
+
+# env-dep:OUT_DIR=/Users/enriquec/Edicion_libros/cursos II 2026/grupo_estudio_inferencia_causal_uni_peru/argument_audit_project/target/debug/build/thiserror-30ee4dbbba4621d5/out

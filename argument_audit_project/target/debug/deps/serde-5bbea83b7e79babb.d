@@ -1,0 +1,12 @@
+/Users/enriquec/Edicion_libros/cursos II 2026/grupo_estudio_inferencia_causal_uni_peru/argument_audit_project/target/debug/deps/serde-5bbea83b7e79babb.d: /Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/lib.rs /Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/integer128.rs /Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/mod.rs /Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/de.rs /Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/ser.rs /Users/enriquec/Edicion_libros/cursos\ II\ 2026/grupo_estudio_inferencia_causal_uni_peru/argument_audit_project/target/debug/build/serde-1e9038675204c215/out/private.rs
+
+/Users/enriquec/Edicion_libros/cursos II 2026/grupo_estudio_inferencia_causal_uni_peru/argument_audit_project/target/debug/deps/libserde-5bbea83b7e79babb.rmeta: /Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/lib.rs /Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/integer128.rs /Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/mod.rs /Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/de.rs /Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/ser.rs /Users/enriquec/Edicion_libros/cursos\ II\ 2026/grupo_estudio_inferencia_causal_uni_peru/argument_audit_project/target/debug/build/serde-1e9038675204c215/out/private.rs
+
+/Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/lib.rs:
+/Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/integer128.rs:
+/Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/mod.rs:
+/Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/de.rs:
+/Users/enriquec/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/ser.rs:
+/Users/enriquec/Edicion_libros/cursos\ II\ 2026/grupo_estudio_inferencia_causal_uni_peru/argument_audit_project/target/debug/build/serde-1e9038675204c215/out/private.rs:
+
+# env-dep:OUT_DIR=/Users/enriquec/Edicion_libros/cursos II 2026/grupo_estudio_inferencia_causal_uni_peru/argument_audit_project/target/debug/build/serde-1e9038675204c215/out
