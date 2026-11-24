@@ -308,7 +308,10 @@
   #set par(justify: false, first-line-indent: 0cm)
   #align(center)[
     #v(0.3cm)
-    #image(meta.logo, width: 24%)
+    #let logo = meta.at("logo", default: none)
+    #if logo != none [
+      #if type(logo) == content [ #logo ] else [ #image(logo, width: 24%) ]
+    ]
     #v(0.55cm)
     #text(size: 15pt, fill: negro, tracking: 0.14em)[#smallcaps[#meta.universidad]]
     #v(2.5mm)
