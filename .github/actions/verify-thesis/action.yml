@@ -1,0 +1,53 @@
+name: 'verify-thesis'
+description: 'Compila las plantillas Typst de tesis UNI, verifica cifras del ejemplo y (opcional) compila LaTeX'
+author: 'Grupo de Estudio de Inferencia Causal — UNI'
+branding:
+  icon: 'check-square'
+  color: 'blue'
+
+inputs:
+  typst-version:
+    description: 'Versión de Typst a instalar (sin la v)'
+    required: false
+    default: '0.15.1'
+  with-latex:
+    description: 'También compilar la plantilla LaTeX (instalará TeX Live vía apt)'
+    required: false
+    default: 'false'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Instalar Typst
+      shell: bash
+      run: |
+        curl -fsSL "https://github.com/typst/typst/releases/download/v${{ inputs.typst-version }}/typst-x86_64-unknown-linux-musl.tar.xz" | tar -xJ
+        sudo mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
+
+    - name: Dependencias Python del ejemplo (cifras Monte Carlo)
+      shell: bash
+      run: python3 -m pip install -r plantilla_tesis_uni_typst/requirements.txt
+
+    - name: Verificar cifras del ejemplo
+      shell: bash
+      run: cd plantilla_tesis_uni_typst && python3 verificar_cifras.py
+
+    - name: Compilar Typst (tesis y tesis_doctorado)
+      shell: bash
+      run: |
+        typst compile plantilla_tesis_uni_typst/tesis.typ "$RUNNER_TEMP/tesis.pdf"
+        typst compile plantilla_tesis_uni_typst/tesis_doctorado.typ "$RUNNER_TEMP/tesis_doctorado.pdf"
+
+    - name: TeX Live + latexmk
+      if: ${{ inputs.with-latex == 'true' }}
+      shell: bash
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y latexmk texlive-latex-extra texlive-bibtex-extra \
+          texlive-lang-spanish texlive-science biber
+
+    - name: Compilar plantilla LaTeX
+      if: ${{ inputs.with-latex == 'true' }}
+      shell: bash
+      working-directory: plantilla_tesis_uni_latex
+      run: latexmk -pdf -interaction=nonstopmode tesis.tex
