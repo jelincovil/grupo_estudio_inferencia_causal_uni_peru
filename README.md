@@ -149,6 +149,23 @@ flowchart TB
 
 ---
 
+## Integraciones
+
+Piezas de este repositorio consumibles por otras herramientas:
+
+- **Paquete Typst Universe `@preview/causal-uni-tesis:0.1.0`** — en revisión ([typst/packages#6501](https://github.com/typst/packages/pull/6501)). Uso, cuando se publique: `#import "@preview/causal-uni-tesis:0.1.0": *`. Mientras tanto, `tesis new` o la copia de la plantilla hacen el mismo trabajo.
+- **GitHub Action `verify-thesis`** (composite, en este repo) — compila ambas plantillas y verifica las cifras del ejemplo Monte Carlo en tu CI:
+
+  ```yaml
+  - uses: jelincovil/grupo_estudio_inferencia_causal_uni_peru/.github/actions/verify-thesis@main
+    with:
+      typst-version: '0.15.1'
+      with-latex: 'false'
+  ```
+- **CLI `tesis`** (Rust, [`tools/tesis/`](tools/tesis/)) — `cargo install --path tools/tesis` → `tesis new` / `tesis check`.
+- **argument-audit** ([`argument_audit_project/`](argument_audit_project/)) — verificador determinista de alegatos; consumible vía binario (`argument-audit check`, exit codes), JSON (`--emit-graph`, `explain`) y el **servidor MCP** `argument-mcp` (stdio; herramientas `argument_check` y `argument_explain`). Se conecta a cualquier cliente MCP.
+- **Skill de agente `argument-audit`** — instrucciones para asistentes de código (instalada en `~/.agents/skills/argument-audit/`).
+
 ## Comunidad
 
 - **Preguntas / ideas:** [GitHub Discussions](https://github.com/jelincovil/grupo_estudio_inferencia_causal_uni_peru/discussions)
