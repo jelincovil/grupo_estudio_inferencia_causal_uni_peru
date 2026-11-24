@@ -88,8 +88,17 @@ Detalle en [`documentacion/05-equivalencias-latex-typst.md`](documentacion/05-eq
 | [`documentacion/`](documentacion/) | Criterios de redacción: capítulos, estilo, tablas, fórmulas, referencias, equivalencias LaTeX↔Typst, enlaces a normativa UNI | [`README`](documentacion/README.md) |
 | [`ejemplos_tesis/`](ejemplos_tesis/) | Fichas de tesis ajenas **con enlace comprobado** (maestría y doctorado) | [`README`](ejemplos_tesis/README.md) |
 | [`tools/tesis/`](tools/tesis/) | **CLI `tesis`** en Rust: `tesis new` crea un proyecto personalizado; `tesis check` detecta placeholders sin sustituir | [`README`](tools/tesis/README.md) |
+| [`argument_audit_project/`](argument_audit_project/) | **argument-audit** *(experimental)* — workspace Rust: kernel de alegatos tipados (claims, dependencias, evidencia) con verificador determinista; 99 tests; sin llamadas a modelos | [`README`](argument_audit_project/README.md) |
 
 ---
+
+## `argument-audit` — kernel experimental de auditoría de alegatos
+
+Nuevo componente (en desarrollo activo): un workspace Rust con un **kernel administrativo para alegatos tipados** — claims, dependencias y registros de evidencia — y un verificador determinista. No ejecuta código externo, no llama modelos y **nunca promueve `claim_supported`**. Incluye render/parse de tarjetas (`argument-card`) y un CLI (`argument-audit`) con `check`, `align`, `explain` y emisión de grafos de contexto.
+
+- **Estado:** experimental (`publish = false`); fases F0–F8 pendientes en [`argument_audit_project/progress/STATE.json`](argument_audit_project/progress/STATE.json). No es un certificado de lectura de ningún corpus.
+- **Verificado:** `cargo test --workspace` → 99 passing; `cargo clippy --workspace --all-targets -- -D warnings` → limpio.
+- **Detalle:** [`argument_audit_project/README.md`](argument_audit_project/README.md).
 
 ## Estructura
 
@@ -102,6 +111,7 @@ flowchart TB
     L[plantilla_tesis_uni_latex]
     E[ejemplos_tesis]
     CLI[tools/tesis · CLI en Rust]
+    AA[argument_audit_project · kernel experimental]
   end
   G --> Doc
   G --> T

@@ -5,6 +5,7 @@ Formato: [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/). Versionado
 ## [Unreleased]
 
 ### Added
+- `argument_audit_project/` (**argument-audit**, experimental): workspace Rust con verificador determinista de alegatos tipados (claims, dependencias, evidencia); `check`/`align`/`explain`; 99 tests y `clippy --all-targets -- -D warnings` limpio. Incluido en CI (`argument-audit`).
 - CLI `tesis` (Rust, `tools/tesis/`): `tesis new` crea un proyecto personalizado a partir de la plantilla elegida y `tesis check` detecta placeholders sin sustituir. Incluido en CI (`cargo test`).
 - Banner del repositorio y README reescrito: comparación Typst↔LaTeX, FAQ, enlace a Discussions y Star History.
 - Archivos comunitarios: `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `CITATION.cff`, plantilla de PR y configuración de templates.
