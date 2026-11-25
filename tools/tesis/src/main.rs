@@ -24,23 +24,23 @@ struct Asset {
 }
 
 const TYPST_ASSETS: &[Asset] = &[
-    Asset { rel: "tesis.typ", bytes: include_bytes!("../../../plantilla_tesis_uni_typst/tesis.typ") },
-    Asset { rel: "tesis_doctorado.typ", bytes: include_bytes!("../../../plantilla_tesis_uni_typst/tesis_doctorado.typ") },
-    Asset { rel: "plantilla.typ", bytes: include_bytes!("../../../plantilla_tesis_uni_typst/plantilla.typ") },
-    Asset { rel: "referencias.bib", bytes: include_bytes!("../../../plantilla_tesis_uni_typst/referencias.bib") },
-    Asset { rel: "logo_uni.png", bytes: include_bytes!("../../../plantilla_tesis_uni_typst/logo_uni.png") },
-    Asset { rel: "compilar.sh", bytes: include_bytes!("../../../plantilla_tesis_uni_typst/compilar.sh") },
-    Asset { rel: "README.md", bytes: include_bytes!("../../../plantilla_tesis_uni_typst/README.md") },
-    Asset { rel: "requirements.txt", bytes: include_bytes!("../../../plantilla_tesis_uni_typst/requirements.txt") },
+    Asset { rel: "tesis.typ", bytes: include_bytes!("../templates/typst/tesis.typ") },
+    Asset { rel: "tesis_doctorado.typ", bytes: include_bytes!("../templates/typst/tesis_doctorado.typ") },
+    Asset { rel: "plantilla.typ", bytes: include_bytes!("../templates/typst/plantilla.typ") },
+    Asset { rel: "referencias.bib", bytes: include_bytes!("../templates/typst/referencias.bib") },
+    Asset { rel: "logo_uni.png", bytes: include_bytes!("../templates/typst/logo_uni.png") },
+    Asset { rel: "compilar.sh", bytes: include_bytes!("../templates/typst/compilar.sh") },
+    Asset { rel: "README.md", bytes: include_bytes!("../templates/typst/README.md") },
+    Asset { rel: "requirements.txt", bytes: include_bytes!("../templates/typst/requirements.txt") },
 ];
 
 const LATEX_ASSETS: &[Asset] = &[
-    Asset { rel: "tesis.tex", bytes: include_bytes!("../../../plantilla_tesis_uni_latex/tesis.tex") },
-    Asset { rel: "referencias.bib", bytes: include_bytes!("../../../plantilla_tesis_uni_latex/referencias.bib") },
-    Asset { rel: "logo_uni.png", bytes: include_bytes!("../../../plantilla_tesis_uni_latex/logo_uni.png") },
-    Asset { rel: "compilar.sh", bytes: include_bytes!("../../../plantilla_tesis_uni_latex/compilar.sh") },
-    Asset { rel: "README.md", bytes: include_bytes!("../../../plantilla_tesis_uni_latex/README.md") },
-    Asset { rel: "GUIA_COMPLETA.md", bytes: include_bytes!("../../../plantilla_tesis_uni_latex/GUIA_COMPLETA.md") },
+    Asset { rel: "tesis.tex", bytes: include_bytes!("../templates/latex/tesis.tex") },
+    Asset { rel: "referencias.bib", bytes: include_bytes!("../templates/latex/referencias.bib") },
+    Asset { rel: "logo_uni.png", bytes: include_bytes!("../templates/latex/logo_uni.png") },
+    Asset { rel: "compilar.sh", bytes: include_bytes!("../templates/latex/compilar.sh") },
+    Asset { rel: "README.md", bytes: include_bytes!("../templates/latex/README.md") },
+    Asset { rel: "GUIA_COMPLETA.md", bytes: include_bytes!("../templates/latex/GUIA_COMPLETA.md") },
 ];
 
 fn assets_for(kind: &TemplateKind) -> &'static [Asset] {
@@ -516,5 +516,31 @@ mod tests {
     fn validacion_rechaza_comillas_en_valores() {
         let m = Meta { autor: Some("valor con \"comilla\"".into()), ..Meta::default() };
         assert!(validar_meta(&m).is_err());
+    }
+
+    fn repo_root() -> PathBuf {
+        PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../..")
+    }
+
+    #[test]
+    fn plantillas_embebidas_coinciden_con_el_repo() {
+        // En el crate publicable (cargo package) el repo no existe: se omite.
+        let root = repo_root();
+        if !root.join("plantilla_tesis_uni_typst").is_dir() {
+            eprintln!("skipped: standalone crate (repo not present)");
+            return;
+        }
+        for asset in TYPST_ASSETS {
+            let real = root.join("plantilla_tesis_uni_typst").join(asset.rel);
+            assert!(real.is_file(), "falta {}", real.display());
+            assert_eq!(asset.bytes, fs::read(&real).unwrap().as_slice(),
+                       "desync en typst/{} — sincroniza tools/tesis/templates", asset.rel);
+        }
+        for asset in LATEX_ASSETS {
+            let real = root.join("plantilla_tesis_uni_latex").join(asset.rel);
+            assert!(real.is_file(), "falta {}", real.display());
+            assert_eq!(asset.bytes, fs::read(&real).unwrap().as_slice(),
+                       "desync en latex/{} — sincroniza tools/tesis/templates", asset.rel);
+        }
     }
 }

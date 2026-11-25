@@ -5,7 +5,10 @@ edition = "2021"
 description = "CLI para crear y verificar proyectos de tesis UNI (plantillas Typst/LaTeX)"
 license = "CC-BY-4.0"
 repository = "https://github.com/jelincovil/grupo_estudio_inferencia_causal_uni_peru"
+homepage = "https://github.com/jelincovil/grupo_estudio_inferencia_causal_uni_peru"
+readme = "README.md"
 keywords = ["tesis", "plantilla", "uni", "typst", "latex"]
+categories = ["command-line-utilities"]
 
 [[bin]]
 name = "tesis"
